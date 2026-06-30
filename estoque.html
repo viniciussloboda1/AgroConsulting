@@ -28,6 +28,12 @@
   .logo small { display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #8fb35c; margin-top: 1px; }
   .back-link { color: #b8c8c0; text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 7px 12px; border-radius: 7px; border: 1px solid rgba(255,255,255,.14); transition: background .12s; }
   .back-link:hover { background: rgba(255,255,255,.08); color: #fff; }
+  .sync-pill { font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 20px; background: rgba(255,255,255,.1); color: #cdd9d2; white-space: nowrap; }
+  .sync-pill:empty { display: none; }
+  .sync-pill.s-ok { background: rgba(111,165,44,.22); color: #cde8a8; }
+  .sync-pill.s-load { background: rgba(201,162,60,.22); color: #f0d79a; }
+  .sync-pill.s-off { background: rgba(177,68,47,.28); color: #f2c3b8; }
+  .sync-pill.s-local { background: rgba(255,255,255,.08); color: #aebbb4; }
 
   /* abas */
   .tabs { background: var(--surface); border-bottom: 1px solid var(--line); padding: 0 28px; display: flex; gap: 4px; overflow-x: auto; }
@@ -124,7 +130,10 @@
       </svg>
       <span>Agro Consultancy<small>Estoque</small></span>
     </div>
-    <a class="back-link" href="index.html">&larr; Início</a>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span id="sync-pill" class="sync-pill"></span>
+      <a class="back-link" href="index.html">&larr; Início</a>
+    </div>
   </header>
 
   <nav class="tabs">
@@ -257,6 +266,68 @@
 
   <script>
     const KEY = 'agroconsultancy_estoque_v2';
+
+    /* ===================================================================
+       CONFIG DA NUVEM — cole aqui a URL do seu App da Web (Google Sheets)
+       e a MESMA senha que você colocou no Apps Script (Code.gs).
+       Enquanto a URL ficar vazia, o sistema funciona só neste navegador.
+       =================================================================== */
+    const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwYOQ3SvFnURrjzq0rgqPDSQ9zh3U4OZaibla8SzEnMHTmKAPLvE1QscAUBcuVxU1VoYg/exec'; // App da Web do Google Sheets
+    const SHEETS_SECRET = '200198'; // idêntica à do Code.gs
+
+    const cloudOn = () => SHEETS_URL.trim().length > 0;
+    let pushTimer = null;
+
+    function setSync(state) {
+      const el = document.getElementById('sync-pill'); if (!el) return;
+      const map = {
+        loading: ['Carregando…', 's-load'],
+        saving:  ['Salvando…', 's-load'],
+        ok:      ['Sincronizado', 's-ok'],
+        offline: ['Sem conexão com a planilha', 's-off'],
+        local:   ['Somente neste navegador', 's-local']
+      };
+      const [txt, cls] = map[state] || ['', ''];
+      el.textContent = txt; el.className = 'sync-pill ' + cls;
+    }
+
+    function schedulePush() {
+      if (!cloudOn()) return;
+      setSync('saving');
+      clearTimeout(pushTimer);
+      pushTimer = setTimeout(pushCloud, 800);
+    }
+    async function pushCloud() {
+      try {
+        await fetch(SHEETS_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ secret: SHEETS_SECRET, depositos: db.depositos, itens: db.itens, compras: db.compras })
+        });
+        setSync('ok');
+      } catch (e) { setSync('offline'); }
+    }
+    async function loadCloud() {
+      if (!cloudOn()) { setSync('local'); return; }
+      setSync('loading');
+      try {
+        const r = await fetch(SHEETS_URL + '?secret=' + encodeURIComponent(SHEETS_SECRET));
+        const data = await r.json();
+        if (data && !data.error) {
+          db = {
+            depositos: (data.depositos || []).map(d => ({ id: String(d.id), nome: String(d.nome || ''), local: String(d.local || '') })),
+            itens: (data.itens || []).map(i => ({ id: String(i.id), codigo: String(i.codigo || ''), nome: String(i.nome || ''), unidade: String(i.unidade || '') })),
+            compras: (data.compras || []).map(c => ({ id: String(c.id), nota: String(c.nota || ''), itemId: String(c.itemId || ''), depositoId: String(c.depositoId || ''), qtd: Number(c.qtd) || 0, valor: Number(c.valor) || 0, data: String(c.data || '') }))
+          };
+          try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {}
+          renderAll();
+          setSync('ok');
+        } else { setSync('offline'); }
+      } catch (e) { setSync('offline'); }
+    }
+    function renderAll() {
+      renderDepositos(); renderItens(); refreshSelects(); renderCompras(); renderEstoque();
+    }
     let db = { depositos: [], itens: [], compras: [] };
     let edit = { dep: null, item: null, compra: null };
 
@@ -264,7 +335,7 @@
       try { const raw = localStorage.getItem(KEY); if (raw) db = Object.assign({ depositos: [], itens: [], compras: [] }, JSON.parse(raw)); }
       catch (e) { db = { depositos: [], itens: [], compras: [] }; }
     }
-    function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} schedulePush(); }
 
     const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     const $ = id => document.getElementById(id);
@@ -521,7 +592,8 @@
 
     // ---- iniciar ----
     load();
-    renderDepositos(); renderItens(); refreshSelects(); renderCompras(); renderEstoque();
+    renderAll();
+    loadCloud();
   </script>
 </body>
 </html>
