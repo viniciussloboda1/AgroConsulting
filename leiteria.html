@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agro Consultancy — Leiteria</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #15362a; --ink-2: #1e4836; --paper: #f2f4ec; --surface: #ffffff;
+    --accent: #c9a23c; --accent-deep: #a8842a; --leaf: #6fa52c; --leaf-deep: #5a8a22;
+    --text: #18211c; --muted: #5e6b62; --line: #e2e5d8; --line-soft: #eceee3;
+    --danger: #b1442f; --ok: #2f7d4f; --radius: 10px;
+    --shadow: 0 1px 2px rgba(21,54,42,.06), 0 8px 24px rgba(21,54,42,.07);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--paper); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+  button, input, select { font-family: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; }
+  .topbar { background: var(--ink); color: #eef3ef; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .logo { display: inline-flex; align-items: center; gap: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -.01em; }
+  .logo__mark { width: 32px; height: 32px; flex: none; display: block; }
+  .logo small { display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #8fb35c; margin-top: 1px; }
+  .back-link { color: #b8c8c0; text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 7px 12px; border-radius: 7px; border: 1px solid rgba(255,255,255,.14); transition: background .12s; }
+  .back-link:hover { background: rgba(255,255,255,.08); color: #fff; }
+  .sync-pill { font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 20px; background: rgba(255,255,255,.1); color: #cdd9d2; white-space: nowrap; }
+  .sync-pill:empty { display: none; }
+  .sync-pill.s-ok { background: rgba(111,165,44,.22); color: #cde8a8; }
+  .sync-pill.s-load { background: rgba(201,162,60,.22); color: #f0d79a; }
+  .sync-pill.s-off { background: rgba(177,68,47,.28); color: #f2c3b8; }
+  .sync-pill.s-local { background: rgba(255,255,255,.08); color: #aebbb4; }
+  .tabs { background: var(--surface); border-bottom: 1px solid var(--line); padding: 0 28px; display: flex; gap: 4px; overflow-x: auto; }
+  .tab { border: none; background: none; padding: 15px 16px; font-size: 14px; font-weight: 600; color: var(--muted); border-bottom: 2.5px solid transparent; white-space: nowrap; transition: color .12s, border-color .12s; }
+  .tab:hover { color: var(--ink-2); }
+  .tab.is-active { color: var(--ink); border-bottom-color: var(--leaf); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 28px; }
+  .screen { display: none; }
+  .screen.is-active { display: block; }
+  .screen-head { margin-bottom: 22px; }
+  .screen-head h1 { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -.02em; margin-bottom: 5px; }
+  .screen-head p { color: var(--muted); font-size: 14px; line-height: 1.55; max-width: 660px; }
+  .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 22px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+  .stat__label { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 7px; }
+  .stat__value { font-family: 'Space Grotesk', sans-serif; font-size: 23px; font-weight: 600; letter-spacing: -.02em; }
+  .stat__value.accent { color: var(--accent-deep); }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 22px; }
+  .panel__head { padding: 15px 20px; border-bottom: 1px solid var(--line-soft); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .panel__head h2 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; }
+  .form { padding: 20px; display: grid; gap: 12px; align-items: end; }
+  .cols-vaca { grid-template-columns: repeat(4, 1fr); }
+  .cols-vaca .actions-cell { grid-column: 1 / -1; display: flex; gap: 8px; justify-content: flex-end; }
+  .cols-leite { grid-template-columns: 2fr 1.2fr 1.2fr 1fr auto; }
+  .cols-erb { grid-template-columns: repeat(4, 1fr); }
+  .cols-erb .actions-cell { grid-column: 1 / -1; display: flex; gap: 8px; justify-content: flex-end; }
+  .field label { display: block; font-size: 12.5px; font-weight: 600; color: #2c3c37; margin-bottom: 6px; }
+  .field input, .field select { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); font-size: 14px; color: var(--text); transition: border-color .15s, box-shadow .15s; }
+  .field input:focus, .field select:focus { outline: none; border-color: var(--leaf); box-shadow: 0 0 0 3px rgba(111,165,44,.16); background: #fff; }
+  .form-msg { padding: 0 20px 16px; font-size: 13px; font-weight: 500; }
+  .form-msg.err { color: var(--danger); }
+  .form-msg.ok { color: var(--ok); }
+  .table-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .table-head h2 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+  .table-tools { display: flex; gap: 10px; align-items: center; }
+  .panel--table { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 560px; }
+  thead th { text-align: left; font-size: 11.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 600; padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--paper); white-space: nowrap; }
+  thead th.num, tbody td.num { text-align: right; }
+  tbody td { padding: 12px 18px; border-bottom: 1px solid var(--line-soft); font-size: 14px; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fbfcf8; }
+  .strong { font-weight: 600; color: #21332e; }
+  .muted { color: var(--muted); font-size: 12.5px; }
+  .pill { display: inline-block; font-size: 12.5px; font-weight: 600; background: #eaf2e0; color: var(--leaf-deep); padding: 3px 10px; border-radius: 20px; }
+  .pill.gold { background: #f6ecd4; color: var(--accent-deep); }
+  .pill.blue { background: #e3ecf2; color: #3a5b73; }
+  .pill.gray { background: #eef0ea; color: var(--muted); }
+  .tag-id { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 13px; background: var(--paper); border: 1px solid var(--line); padding: 3px 9px; border-radius: 6px; color: var(--ink-2); }
+  .row-actions { display: flex; gap: 6px; justify-content: flex-end; }
+  .icon-btn { border: none; background: none; padding: 6px 9px; border-radius: 6px; font-size: 13px; font-weight: 600; color: var(--muted); }
+  .icon-btn:hover { background: var(--paper); color: var(--ink-2); }
+  .icon-btn.del:hover { background: #f8e7e2; color: var(--danger); }
+  .btn { border: none; border-radius: 8px; font-size: 14px; font-weight: 600; padding: 10px 18px; transition: background .15s, transform .05s, border-color .15s; white-space: nowrap; }
+  .btn-primary { background: var(--ink); color: #f3f6f3; }
+  .btn-primary:hover { background: var(--ink-2); }
+  .btn-primary:active { transform: translateY(1px); }
+  .btn-primary:disabled { opacity: .45; cursor: not-allowed; }
+  .btn-ghost { background: var(--surface); border: 1px solid var(--line); color: #2c3c37; }
+  .btn-ghost:hover { border-color: var(--leaf); background: var(--paper); }
+  .btn-cancel { background: none; border: 1px solid var(--line); color: var(--muted); }
+  .btn-cancel:hover { border-color: var(--danger); color: var(--danger); }
+  .empty { padding: 46px 20px; text-align: center; color: var(--muted); }
+  .empty .ico { font-size: 28px; display: block; margin-bottom: 10px; }
+  .empty p { font-size: 14px; line-height: 1.5; }
+  .note { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.55; background: var(--surface); border: 1px dashed var(--line); border-radius: 8px; padding: 12px 14px; }
+  .note strong { color: #2c3c37; }
+  @media (max-width: 880px) {
+    .summary { grid-template-columns: 1fr; }
+    .cols-vaca, .cols-leite, .cols-erb { grid-template-columns: 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="logo" href="index.html#painel" style="text-decoration:none;color:inherit;">
+      <svg class="logo__mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="40" height="40" rx="11" fill="#c9a23c"/>
+        <path d="M20 32 C 20 27 20 23 20 19" fill="none" stroke="#173d2d" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M20 22 C 15 23 11 19 9 13 C 14 13 18 17 20 22 Z" fill="#173d2d"/>
+        <path d="M20 20 C 25 21 29 17 31 11 C 26 11 22 15 20 20 Z" fill="#1e4f39"/>
+      </svg>
+      <span>Agro Consultancy<small>Leiteria</small></span>
+    </a>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span id="sync-pill" class="sync-pill"></span>
+      <a class="back-link" href="index.html#painel">&larr; Voltar ao início</a>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab is-active" data-tab="vacas">Vacas</button>
+    <button class="tab" data-tab="leite">Produção de Leite</button>
+    <button class="tab" data-tab="rebanho">Eventos do Rebanho</button>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- ===== VACAS ===== -->
+    <section class="screen is-active" id="screen-vacas">
+      <div class="screen-head"><h1>Vacas</h1><p>Cadastro do rebanho. O brinco/identificação é único.</p></div>
+      <div class="summary">
+        <div class="stat"><div class="stat__label">Total de vacas</div><div class="stat__value" id="vaca-total">0</div></div>
+        <div class="stat"><div class="stat__label">Em lactação</div><div class="stat__value accent" id="vaca-lactacao">0</div></div>
+        <div class="stat"><div class="stat__label">Ativas</div><div class="stat__value" id="vaca-ativas">0</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel__head"><h2 id="vaca-form-title">Adicionar vaca</h2></div>
+        <div class="form cols-vaca">
+          <div class="field"><label for="vaca-brinco">Brinco / Identificação</label><input type="text" id="vaca-brinco" placeholder="Ex: 042" /></div>
+          <div class="field"><label for="vaca-nome">Nome (opcional)</label><input type="text" id="vaca-nome" placeholder="Ex: Mimosa" /></div>
+          <div class="field"><label for="vaca-raca">Raça</label><input type="text" id="vaca-raca" placeholder="Ex: Holandesa" /></div>
+          <div class="field"><label for="vaca-nasc">Nascimento</label><input type="date" id="vaca-nasc" /></div>
+          <div class="field"><label for="vaca-categoria">Categoria</label><select id="vaca-categoria"><option value="Em lactação">Em lactação</option><option value="Seca">Seca</option><option value="Novilha">Novilha</option><option value="Outra">Outra</option></select></div>
+          <div class="field"><label for="vaca-prop">Propriedade</label><select id="vaca-prop"></select></div>
+          <div class="field"><label for="vaca-situacao">Situação</label><select id="vaca-situacao"><option value="Ativa">Ativa</option><option value="Vendida">Vendida</option><option value="Descartada">Descartada</option></select></div>
+          <div class="actions-cell"><button class="btn btn-primary" id="vaca-save">Adicionar</button><button class="btn btn-cancel" id="vaca-cancel" style="display:none;">Cancelar</button></div>
+        </div>
+        <div class="form-msg" id="vaca-msg"></div>
+      </div>
+      <div class="table-head"><h2>Rebanho cadastrado</h2><div class="table-tools"><button class="btn btn-ghost" id="vaca-export">⬇ Exportar planilha</button></div></div>
+      <div class="panel panel--table">
+        <table><thead><tr><th>Brinco</th><th>Nome</th><th>Raça</th><th>Categoria</th><th>Propriedade</th><th>Situação</th><th class="num">Ações</th></tr></thead><tbody id="vaca-tbody"></tbody></table>
+        <div class="empty" id="vaca-empty"><span class="ico">🐄</span><p>Nenhuma vaca ainda.<br>Cadastre a primeira acima.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== PRODUÇÃO DE LEITE ===== -->
+    <section class="screen" id="screen-leite">
+      <div class="screen-head"><h1>Produção de Leite</h1><p>Registre a ordenha por vaca. Os totais são calculados automaticamente.</p></div>
+      <div class="summary">
+        <div class="stat"><div class="stat__label">Litros no mês</div><div class="stat__value accent" id="leite-mes">0</div></div>
+        <div class="stat"><div class="stat__label">Litros total</div><div class="stat__value" id="leite-total">0</div></div>
+        <div class="stat"><div class="stat__label">Média por ordenha</div><div class="stat__value" id="leite-media">0</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel__head"><h2 id="leite-form-title">Registrar ordenha</h2></div>
+        <div class="form cols-leite">
+          <div class="field"><label for="leite-vaca">Vaca</label><select id="leite-vaca"></select></div>
+          <div class="field"><label for="leite-data">Data</label><input type="date" id="leite-data" /></div>
+          <div class="field"><label for="leite-turno">Turno</label><select id="leite-turno"><option value="Manhã">Manhã</option><option value="Tarde">Tarde</option><option value="Único">Único</option></select></div>
+          <div class="field"><label for="leite-litros">Litros</label><input type="number" id="leite-litros" min="0" step="any" placeholder="0" /></div>
+          <div style="display:flex; gap:8px;"><button class="btn btn-primary" id="leite-save">Registrar</button><button class="btn btn-cancel" id="leite-cancel" style="display:none;">Cancelar</button></div>
+        </div>
+        <div class="form-msg" id="leite-msg"></div>
+      </div>
+      <div class="table-head"><h2>Ordenhas registradas</h2><div class="table-tools"><button class="btn btn-ghost" id="leite-export">⬇ Exportar planilha</button></div></div>
+      <div class="panel panel--table">
+        <table><thead><tr><th>Data</th><th>Vaca</th><th>Turno</th><th class="num">Litros</th><th class="num">Ações</th></tr></thead><tbody id="leite-tbody"></tbody></table>
+        <div class="empty" id="leite-empty"><span class="ico">🥛</span><p>Nenhuma ordenha registrada.<br>Cadastre vacas primeiro, depois registre a produção.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== EVENTOS DO REBANHO ===== -->
+    <section class="screen" id="screen-rebanho">
+      <div class="screen-head"><h1>Eventos do Rebanho</h1><p>Saúde e reprodução: parto, inseminação, vacinação, tratamento. Se usar insumo, registre item + depósito + quantidade.</p></div>
+      <div class="panel">
+        <div class="panel__head"><h2 id="erb-form-title">Adicionar evento</h2></div>
+        <div class="form cols-erb">
+          <div class="field"><label for="erb-vaca">Vaca</label><select id="erb-vaca"></select></div>
+          <div class="field"><label for="erb-tipo">Tipo</label><input type="text" id="erb-tipo" list="erb-tipos" placeholder="Ex: Vacinação" /><datalist id="erb-tipos"><option>Parto</option><option>Inseminação</option><option>Diagnóstico de gestação</option><option>Vacinação</option><option>Tratamento</option><option>Secagem</option></datalist></div>
+          <div class="field"><label for="erb-data">Data</label><input type="date" id="erb-data" /></div>
+          <div class="field"><label for="erb-resp">Responsável</label><select id="erb-resp"></select></div>
+          <div class="field"><label for="erb-item">Item consumido</label><select id="erb-item"></select></div>
+          <div class="field"><label for="erb-deposito">Depósito</label><select id="erb-deposito"></select></div>
+          <div class="field"><label for="erb-qtd">Quantidade</label><input type="number" id="erb-qtd" min="0" step="any" placeholder="0" /></div>
+          <div class="actions-cell"><button class="btn btn-primary" id="erb-save">Adicionar</button><button class="btn btn-cancel" id="erb-cancel" style="display:none;">Cancelar</button></div>
+        </div>
+        <div class="form-msg" id="erb-msg"></div>
+      </div>
+      <div class="table-head"><h2>Eventos registrados</h2><div class="table-tools"><button class="btn btn-ghost" id="erb-export">⬇ Exportar planilha</button></div></div>
+      <div class="panel panel--table">
+        <table><thead><tr><th>Data</th><th>Vaca</th><th>Tipo</th><th>Responsável</th><th>Consumo</th><th class="num">Ações</th></tr></thead><tbody id="erb-tbody"></tbody></table>
+        <div class="empty" id="erb-empty"><span class="ico">💉</span><p>Nenhum evento ainda.<br>Cadastre vacas primeiro.</p></div>
+      </div>
+      <div class="note"><strong>Sobre o consumo:</strong> item e quantidade ficam registrados no evento, mas ainda não dão baixa automática no Estoque. A gente liga isso quando quiser.</div>
+    </section>
+
+  </div>
+
+  <script>
+    const KEY = 'agroconsultancy_leiteria_v1';
+    const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwYOQ3SvFnURrjzq0rgqPDSQ9zh3U4OZaibla8SzEnMHTmKAPLvE1QscAUBcuVxU1VoYg/exec';
+    const SHEETS_SECRET = '200198';
+
+    const EMPTY = { vacas: [], producao_leite: [], eventos_rebanho: [], propriedades: [], responsaveis: [], itens: [], depositos: [] };
+    let db = Object.assign({}, EMPTY);
+    let edit = { vaca: null, leite: null, erb: null };
+
+    const cloudOn = () => SHEETS_URL.trim().length > 0;
+    let pushTimer = null;
+    function setSync(state){ const el=document.getElementById('sync-pill'); if(!el)return; const map={ loading:['Carregando…','s-load'], saving:['Salvando…','s-load'], ok:['Sincronizado','s-ok'], offline:['Sem conexão com a planilha','s-off'], local:['Somente neste navegador','s-local'] }; const [txt,cls]=map[state]||['','']; el.textContent=txt; el.className='sync-pill '+cls; }
+    function load(){ try{ const raw=localStorage.getItem(KEY); if(raw) db=Object.assign({}, EMPTY, JSON.parse(raw)); }catch(e){} }
+    function save(){ try{ localStorage.setItem(KEY, JSON.stringify(db)); }catch(e){} schedulePush(); }
+    function schedulePush(){ if(!cloudOn())return; setSync('saving'); clearTimeout(pushTimer); pushTimer=setTimeout(pushCloud,800); }
+    async function pushCloud(){ try{ await fetch(SHEETS_URL,{ method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({ secret:SHEETS_SECRET, vacas:db.vacas, producao_leite:db.producao_leite, eventos_rebanho:db.eventos_rebanho }) }); setSync('ok'); }catch(e){ setSync('offline'); } }
+    async function loadCloud(){ if(!cloudOn()){ setSync('local'); return; } setSync('loading');
+      try{ const r=await fetch(SHEETS_URL+'?secret='+encodeURIComponent(SHEETS_SECRET)); const data=await r.json();
+        if(data && !data.error){
+          db = {
+            vacas:(data.vacas||[]).map(v=>({ id:String(v.id), brinco:String(v.brinco||''), nome:String(v.nome||''), raca:String(v.raca||''), nascimento:String(v.nascimento||''), categoria:String(v.categoria||''), propriedadeId:String(v.propriedadeId||''), situacao:String(v.situacao||'Ativa') })),
+            producao_leite:(data.producao_leite||[]).map(p=>({ id:String(p.id), vacaId:String(p.vacaId||''), data:String(p.data||''), litros:Number(p.litros)||0, turno:String(p.turno||'') })),
+            eventos_rebanho:(data.eventos_rebanho||[]).map(e=>({ id:String(e.id), vacaId:String(e.vacaId||''), tipo:String(e.tipo||''), data:String(e.data||''), responsavelId:String(e.responsavelId||''), itemId:String(e.itemId||''), depositoId:String(e.depositoId||''), quantidade:Number(e.quantidade)||0, obs:String(e.obs||'') })),
+            propriedades:(data.propriedades||[]).map(p=>({ id:String(p.id), nome:String(p.nome||'') })),
+            responsaveis:(data.responsaveis||[]).map(r=>({ id:String(r.id), nome:String(r.nome||'') })),
+            itens:(data.itens||[]).map(i=>({ id:String(i.id), codigo:String(i.codigo||''), nome:String(i.nome||''), unidade:String(i.unidade||'') })),
+            depositos:(data.depositos||[]).map(d=>({ id:String(d.id), nome:String(d.nome||'') }))
+          };
+          try{ localStorage.setItem(KEY, JSON.stringify(db)); }catch(e){}
+          renderAll(); setSync('ok');
+        } else { setSync('offline'); }
+      }catch(e){ setSync('offline'); } }
+    function renderAll(){ refreshSelects(); renderVacas(); renderLeite(); renderRebanho(); }
+
+    const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+    const $=id=>document.getElementById(id);
+    const norm=s=>String(s==null?'':s).trim().toLowerCase();
+    const numBR=v=>(Number(v)||0).toLocaleString('pt-BR',{maximumFractionDigits:2});
+    function escapeHtml(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function flash(el,text,type){ el.textContent=text; el.className='form-msg '+(type||''); if(text){ setTimeout(()=>{ if(el.textContent===text){ el.textContent=''; el.className='form-msg'; } },4000); } }
+    function fmtData(iso){ if(!iso)return '—'; const p=String(iso).split('-'); return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:iso; }
+
+    const vacaById=id=>db.vacas.find(v=>v.id===id);
+    const propById=id=>db.propriedades.find(p=>p.id===id);
+    const respById=id=>db.responsaveis.find(r=>r.id===id);
+    const itemById=id=>db.itens.find(i=>i.id===id);
+    const depById=id=>db.depositos.find(d=>d.id===id);
+    function vacaLabel(v){ if(!v)return '—'; return v.brinco + (v.nome?` - ${v.nome}`:''); }
+
+    function refreshSelects(){
+      const optEmpty=(arr,fn,vazio)=>`<option value="">${vazio}</option>`+arr.map(x=>`<option value="${x.id}">${escapeHtml(fn(x))}</option>`).join('');
+      const opt=(arr,fn)=>arr.map(x=>`<option value="${x.id}">${escapeHtml(fn(x))}</option>`).join('');
+      const vprop=$('vaca-prop'); const cv=vprop.value; vprop.innerHTML=optEmpty(db.propriedades,p=>p.nome,'— sem propriedade —'); if(cv)vprop.value=cv;
+      const lv=$('leite-vaca'); const cl=lv.value; lv.innerHTML=db.vacas.length?opt(db.vacas,v=>vacaLabel(v)):'<option value="">Cadastre uma vaca</option>'; if(cl)lv.value=cl; $('leite-save').disabled=!db.vacas.length;
+      const ev=$('erb-vaca'),er=$('erb-resp'),ei=$('erb-item'),ed=$('erb-deposito');
+      const ca=ev.value,ra=er.value,ia=ei.value,da=ed.value;
+      ev.innerHTML=db.vacas.length?opt(db.vacas,v=>vacaLabel(v)):'<option value="">Cadastre uma vaca</option>';
+      er.innerHTML=optEmpty(db.responsaveis,r=>r.nome,'— sem responsável —');
+      ei.innerHTML=optEmpty(db.itens,i=>i.codigo+' — '+i.nome,'— sem consumo —');
+      ed.innerHTML=optEmpty(db.depositos,d=>d.nome,'—');
+      if(ca)ev.value=ca; if(ra)er.value=ra; if(ia)ei.value=ia; if(da)ed.value=da;
+      $('erb-save').disabled=!db.vacas.length;
+    }
+
+    /* ===== VACAS ===== */
+    function renderVacas(){ const tb=$('vaca-tbody'); tb.innerHTML=''; $('vaca-empty').style.display=db.vacas.length?'none':'block';
+      let lac=0,ativ=0;
+      db.vacas.forEach(v=>{ if(v.categoria==='Em lactação')lac++; if(v.situacao==='Ativa')ativ++; const p=propById(v.propriedadeId);
+        const sitClass = v.situacao==='Ativa'?'':'gray';
+        const tr=document.createElement('tr');
+        tr.innerHTML=`<td><span class="tag-id">${escapeHtml(v.brinco)}</span></td><td><span class="strong">${escapeHtml(v.nome)||'—'}</span></td><td><span class="muted">${escapeHtml(v.raca)||'—'}</span></td><td><span class="pill ${v.categoria==='Em lactação'?'':'blue'}">${escapeHtml(v.categoria)||'—'}</span></td><td>${p?escapeHtml(p.nome):'<span class="muted">—</span>'}</td><td><span class="pill ${sitClass}">${escapeHtml(v.situacao)||'—'}</span></td><td class="num"><div class="row-actions"><button class="icon-btn" data-vaca-edit="${v.id}">Editar</button><button class="icon-btn del" data-vaca-del="${v.id}">Excluir</button></div></td>`;
+        tb.appendChild(tr); });
+      $('vaca-total').textContent=numBR(db.vacas.length); $('vaca-lactacao').textContent=numBR(lac); $('vaca-ativas').textContent=numBR(ativ); }
+    function salvarVaca(){ const brinco=$('vaca-brinco').value.trim(), nome=$('vaca-nome').value.trim(), raca=$('vaca-raca').value.trim(), nascimento=$('vaca-nasc').value, categoria=$('vaca-categoria').value, propriedadeId=$('vaca-prop').value, situacao=$('vaca-situacao').value;
+      if(!brinco){ flash($('vaca-msg'),'Informe o brinco/identificação.','err'); $('vaca-brinco').focus(); return; }
+      const dup=db.vacas.find(v=>norm(v.brinco)===norm(brinco)&&v.id!==edit.vaca); if(dup){ flash($('vaca-msg'),`O brinco "${brinco}" já está cadastrado${dup.nome?' ('+dup.nome+')':''}.`,'err'); $('vaca-brinco').focus(); return; }
+      if(edit.vaca){ const v=vacaById(edit.vaca); if(v){ Object.assign(v,{brinco,nome,raca,nascimento,categoria,propriedadeId,situacao}); } cancelVaca(); flash($('vaca-msg'),'Vaca atualizada.','ok'); }
+      else { db.vacas.push({ id:uid(), brinco, nome, raca, nascimento, categoria, propriedadeId, situacao }); flash($('vaca-msg'),'Vaca adicionada.','ok'); }
+      save(); renderVacas(); refreshSelects(); $('vaca-brinco').value=''; $('vaca-nome').value=''; $('vaca-raca').value=''; $('vaca-nasc').value=''; $('vaca-brinco').focus(); }
+    function editarVaca(id){ const v=vacaById(id); if(!v)return; edit.vaca=id; $('vaca-brinco').value=v.brinco; $('vaca-nome').value=v.nome||''; $('vaca-raca').value=v.raca||''; $('vaca-nasc').value=v.nascimento||''; $('vaca-categoria').value=v.categoria||'Em lactação'; $('vaca-prop').value=v.propriedadeId||''; $('vaca-situacao').value=v.situacao||'Ativa'; $('vaca-form-title').textContent='Editar vaca'; $('vaca-save').textContent='Salvar'; $('vaca-cancel').style.display='inline-block'; $('vaca-brinco').focus(); }
+    function cancelVaca(){ edit.vaca=null; $('vaca-form-title').textContent='Adicionar vaca'; $('vaca-save').textContent='Adicionar'; $('vaca-cancel').style.display='none'; $('vaca-brinco').value=''; $('vaca-nome').value=''; $('vaca-raca').value=''; $('vaca-nasc').value=''; $('vaca-categoria').value='Em lactação'; $('vaca-situacao').value='Ativa'; }
+    function excluirVaca(id){ if(db.producao_leite.some(p=>p.vacaId===id)||db.eventos_rebanho.some(e=>e.vacaId===id)){ flash($('vaca-msg'),'Não dá pra excluir: há produção ou eventos ligados a esta vaca.','err'); return; } const v=vacaById(id); if(v&&confirm(`Excluir a vaca ${vacaLabel(v)}?`)){ db.vacas=db.vacas.filter(x=>x.id!==id); if(edit.vaca===id)cancelVaca(); save(); renderVacas(); refreshSelects(); } }
+    function exportarVacas(){ if(!db.vacas.length){ alert('Não há vacas para exportar.'); return; } const sep=';',campo=v=>{v=String(v==null?'':v);return /[;"\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+      const cab=['Brinco','Nome','Raça','Nascimento','Categoria','Propriedade','Situação'].join(sep);
+      const linhas=db.vacas.map(v=>{const p=propById(v.propriedadeId);return [campo(v.brinco),campo(v.nome),campo(v.raca),campo(fmtData(v.nascimento)),campo(v.categoria),campo(p?p.nome:''),campo(v.situacao)].join(sep);});
+      baixarCSV('vacas',[cab,...linhas]); }
+
+    /* ===== PRODUÇÃO DE LEITE ===== */
+    function renderLeite(){ const tb=$('leite-tbody'); tb.innerHTML=''; $('leite-empty').style.display=db.producao_leite.length?'none':'block';
+      const mesAtual=new Date().toISOString().slice(0,7); let litMes=0,litTotal=0;
+      db.producao_leite.forEach(p=>{ litTotal+=Number(p.litros)||0; if(String(p.data).slice(0,7)===mesAtual)litMes+=Number(p.litros)||0; });
+      const ord=[...db.producao_leite].sort((a,b)=>(b.data||'').localeCompare(a.data||''));
+      ord.forEach(p=>{ const v=vacaById(p.vacaId); const tr=document.createElement('tr');
+        tr.innerHTML=`<td><span class="muted">${fmtData(p.data)}</span></td><td><span class="strong">${escapeHtml(vacaLabel(v))}</span></td><td><span class="pill gray">${escapeHtml(p.turno)||'—'}</span></td><td class="num strong">${numBR(p.litros)} L</td><td class="num"><div class="row-actions"><button class="icon-btn" data-leite-edit="${p.id}">Editar</button><button class="icon-btn del" data-leite-del="${p.id}">Excluir</button></div></td>`;
+        tb.appendChild(tr); });
+      $('leite-mes').textContent=numBR(litMes)+' L'; $('leite-total').textContent=numBR(litTotal)+' L'; $('leite-media').textContent=(db.producao_leite.length?numBR(litTotal/db.producao_leite.length):'0')+' L'; }
+    function salvarLeite(){ const vacaId=$('leite-vaca').value, data=$('leite-data').value, turno=$('leite-turno').value, litros=$('leite-litros').value===''?0:Number($('leite-litros').value);
+      if(!vacaId){ flash($('leite-msg'),'Selecione a vaca.','err'); return; } if(!data){ flash($('leite-msg'),'Informe a data.','err'); return; } if(!(litros>0)){ flash($('leite-msg'),'Informe os litros (maior que zero).','err'); $('leite-litros').focus(); return; }
+      if(edit.leite){ const p=db.producao_leite.find(x=>x.id===edit.leite); if(p){ Object.assign(p,{vacaId,data,turno,litros}); } cancelLeite(); flash($('leite-msg'),'Ordenha atualizada.','ok'); }
+      else { db.producao_leite.push({ id:uid(), vacaId, data, turno, litros }); flash($('leite-msg'),'Ordenha registrada.','ok'); }
+      save(); renderLeite(); $('leite-litros').value=''; }
+    function editarLeite(id){ const p=db.producao_leite.find(x=>x.id===id); if(!p)return; edit.leite=id; $('leite-vaca').value=p.vacaId; $('leite-data').value=p.data||''; $('leite-turno').value=p.turno||'Manhã'; $('leite-litros').value=p.litros||''; $('leite-form-title').textContent='Editar ordenha'; $('leite-save').textContent='Salvar'; $('leite-cancel').style.display='inline-block'; }
+    function cancelLeite(){ edit.leite=null; $('leite-form-title').textContent='Registrar ordenha'; $('leite-save').textContent='Registrar'; $('leite-cancel').style.display='none'; $('leite-litros').value=''; }
+    function excluirLeite(id){ if(confirm('Excluir esta ordenha?')){ db.producao_leite=db.producao_leite.filter(x=>x.id!==id); if(edit.leite===id)cancelLeite(); save(); renderLeite(); } }
+    function exportarLeite(){ if(!db.producao_leite.length){ alert('Não há produção para exportar.'); return; } const sep=';',dec=n=>(Number(n)||0).toFixed(2).replace('.',','),campo=v=>{v=String(v==null?'':v);return /[;"\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+      const cab=['Data','Vaca','Turno','Litros'].join(sep);
+      const linhas=[...db.producao_leite].sort((a,b)=>(a.data||'').localeCompare(b.data||'')).map(p=>{const v=vacaById(p.vacaId);return [campo(fmtData(p.data)),campo(vacaLabel(v)),campo(p.turno),dec(p.litros)].join(sep);});
+      baixarCSV('producao_leite',[cab,...linhas]); }
+
+    /* ===== EVENTOS DO REBANHO ===== */
+    function consumoTexto(e){ if(!e.itemId)return '—'; const it=itemById(e.itemId), d=depById(e.depositoId); return `${it?escapeHtml(it.nome):'item'} — ${numBR(e.quantidade)} ${it?escapeHtml(it.unidade):''}${d?' ('+escapeHtml(d.nome)+')':''}`; }
+    function renderRebanho(){ const tb=$('erb-tbody'); tb.innerHTML=''; $('erb-empty').style.display=db.eventos_rebanho.length?'none':'block';
+      const ord=[...db.eventos_rebanho].sort((a,b)=>(b.data||'').localeCompare(a.data||''));
+      ord.forEach(e=>{ const v=vacaById(e.vacaId), r=respById(e.responsavelId); const tr=document.createElement('tr');
+        tr.innerHTML=`<td><span class="muted">${fmtData(e.data)}</span></td><td><span class="strong">${escapeHtml(vacaLabel(v))}</span></td><td><span class="pill blue">${escapeHtml(e.tipo)||'—'}</span></td><td>${r?escapeHtml(r.nome):'<span class="muted">—</span>'}</td><td>${consumoTexto(e)}</td><td class="num"><div class="row-actions"><button class="icon-btn" data-erb-edit="${e.id}">Editar</button><button class="icon-btn del" data-erb-del="${e.id}">Excluir</button></div></td>`;
+        tb.appendChild(tr); }); }
+    function salvarErb(){ const vacaId=$('erb-vaca').value, tipo=$('erb-tipo').value.trim(), data=$('erb-data').value, responsavelId=$('erb-resp').value, itemId=$('erb-item').value, depositoId=$('erb-deposito').value, quantidade=$('erb-qtd').value===''?0:Number($('erb-qtd').value);
+      if(!vacaId){ flash($('erb-msg'),'Selecione a vaca.','err'); return; } if(!tipo){ flash($('erb-msg'),'Informe o tipo de evento.','err'); $('erb-tipo').focus(); return; } if(!data){ flash($('erb-msg'),'Informe a data.','err'); return; }
+      if(itemId && !(quantidade>0)){ flash($('erb-msg'),'Informe a quantidade do item.','err'); $('erb-qtd').focus(); return; }
+      if(itemId && !depositoId){ flash($('erb-msg'),'Selecione o depósito do item.','err'); return; }
+      if(edit.erb){ const e=db.eventos_rebanho.find(x=>x.id===edit.erb); if(e){ Object.assign(e,{vacaId,tipo,data,responsavelId,itemId,depositoId,quantidade}); } cancelErb(); flash($('erb-msg'),'Evento atualizado.','ok'); }
+      else { db.eventos_rebanho.push({ id:uid(), vacaId, tipo, data, responsavelId, itemId, depositoId, quantidade, obs:'' }); flash($('erb-msg'),'Evento registrado.','ok'); }
+      save(); renderRebanho(); $('erb-tipo').value=''; $('erb-qtd').value=''; $('erb-item').value=''; $('erb-deposito').value=''; }
+    function editarErb(id){ const e=db.eventos_rebanho.find(x=>x.id===id); if(!e)return; edit.erb=id; $('erb-vaca').value=e.vacaId; $('erb-tipo').value=e.tipo||''; $('erb-data').value=e.data||''; $('erb-resp').value=e.responsavelId||''; $('erb-item').value=e.itemId||''; $('erb-deposito').value=e.depositoId||''; $('erb-qtd').value=e.quantidade||''; $('erb-form-title').textContent='Editar evento'; $('erb-save').textContent='Salvar'; $('erb-cancel').style.display='inline-block'; }
+    function cancelErb(){ edit.erb=null; $('erb-form-title').textContent='Adicionar evento'; $('erb-save').textContent='Adicionar'; $('erb-cancel').style.display='none'; $('erb-tipo').value=''; $('erb-qtd').value=''; $('erb-item').value=''; $('erb-deposito').value=''; }
+    function excluirErb(id){ if(confirm('Excluir este evento?')){ db.eventos_rebanho=db.eventos_rebanho.filter(x=>x.id!==id); if(edit.erb===id)cancelErb(); save(); renderRebanho(); } }
+    function exportarErb(){ if(!db.eventos_rebanho.length){ alert('Não há eventos para exportar.'); return; } const sep=';',dec=n=>(Number(n)||0).toFixed(2).replace('.',','),campo=v=>{v=String(v==null?'':v);return /[;"\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+      const cab=['Data','Vaca','Tipo','Responsável','Item','Quantidade','Depósito'].join(sep);
+      const linhas=db.eventos_rebanho.map(e=>{const v=vacaById(e.vacaId),r=respById(e.responsavelId),it=itemById(e.itemId),d=depById(e.depositoId);return [campo(fmtData(e.data)),campo(vacaLabel(v)),campo(e.tipo),campo(r?r.nome:''),campo(it?it.nome:''),e.itemId?dec(e.quantidade):'',campo(d?d.nome:'')].join(sep);});
+      baixarCSV('eventos_rebanho',[cab,...linhas]); }
+
+    function baixarCSV(nome,linhas){ const csv='\uFEFF'+linhas.join('\r\n'); const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=nome+'_'+new Date().toISOString().slice(0,10)+'.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); }
+
+    function switchTab(name){ document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('is-active',t.dataset.tab===name)); document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('is-active',s.id==='screen-'+name)); }
+    document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchTab(t.dataset.tab)));
+
+    $('vaca-save').addEventListener('click',salvarVaca); $('vaca-cancel').addEventListener('click',cancelVaca); $('vaca-export').addEventListener('click',exportarVacas);
+    $('leite-save').addEventListener('click',salvarLeite); $('leite-cancel').addEventListener('click',cancelLeite); $('leite-export').addEventListener('click',exportarLeite);
+    $('erb-save').addEventListener('click',salvarErb); $('erb-cancel').addEventListener('click',cancelErb); $('erb-export').addEventListener('click',exportarErb);
+    ['vaca-brinco','vaca-nome','vaca-raca'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')salvarVaca();}));
+    ['leite-litros'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')salvarLeite();}));
+    ['erb-tipo','erb-qtd'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')salvarErb();}));
+
+    document.addEventListener('click',e=>{ const t=e.target; const map=[['vaca-edit',editarVaca],['vaca-del',excluirVaca],['leite-edit',editarLeite],['leite-del',excluirLeite],['erb-edit',editarErb],['erb-del',excluirErb]]; for(const [attr,fn] of map){ const v=t.getAttribute('data-'+attr); if(v){ fn(v); return; } } });
+
+    load(); renderAll(); loadCloud();
+  </script>
+</body>
+</html>

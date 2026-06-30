@@ -21,7 +21,6 @@
   button, input, select { font-family: inherit; }
   button { cursor: pointer; }
   :focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; }
-
   .topbar { background: var(--ink); color: #eef3ef; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .logo { display: inline-flex; align-items: center; gap: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -.01em; }
   .logo__mark { width: 32px; height: 32px; flex: none; display: block; }
@@ -34,47 +33,43 @@
   .sync-pill.s-load { background: rgba(201,162,60,.22); color: #f0d79a; }
   .sync-pill.s-off { background: rgba(177,68,47,.28); color: #f2c3b8; }
   .sync-pill.s-local { background: rgba(255,255,255,.08); color: #aebbb4; }
-
   .tabs { background: var(--surface); border-bottom: 1px solid var(--line); padding: 0 28px; display: flex; gap: 4px; overflow-x: auto; }
-  .tab { border: none; background: none; padding: 15px 16px; font-size: 14px; font-weight: 600; color: var(--muted); border-bottom: 2.5px solid transparent; white-space: nowrap; transition: color .12s, border-color .12s; }
+  .tab { border: none; background: none; padding: 15px 14px; font-size: 14px; font-weight: 600; color: var(--muted); border-bottom: 2.5px solid transparent; white-space: nowrap; transition: color .12s, border-color .12s; }
   .tab:hover { color: var(--ink-2); }
   .tab.is-active { color: var(--ink); border-bottom-color: var(--leaf); }
-
-  .wrap { max-width: 1060px; margin: 0 auto; padding: 28px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 28px; }
   .screen { display: none; }
   .screen.is-active { display: block; }
-
   .screen-head { margin-bottom: 22px; }
   .screen-head h1 { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -.02em; margin-bottom: 5px; }
-  .screen-head p { color: var(--muted); font-size: 14px; line-height: 1.55; max-width: 640px; }
-
+  .screen-head p { color: var(--muted); font-size: 14px; line-height: 1.55; max-width: 660px; }
   .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 22px; }
   .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
   .stat__label { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 7px; }
   .stat__value { font-family: 'Space Grotesk', sans-serif; font-size: 23px; font-weight: 600; letter-spacing: -.02em; }
   .stat__value.accent { color: var(--accent-deep); }
-
   .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 22px; }
   .panel__head { padding: 15px 20px; border-bottom: 1px solid var(--line-soft); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .panel__head h2 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; }
-
   .form { padding: 20px; display: grid; gap: 12px; align-items: end; }
   .cols-safra { grid-template-columns: 2fr 1fr 1fr auto; }
   .cols-prop { grid-template-columns: 2fr 1.6fr 1fr auto; }
   .cols-talhao { grid-template-columns: 2fr 1.6fr 1fr auto; }
   .cols-cultura { grid-template-columns: 2fr 1.2fr auto; }
   .cols-campo { grid-template-columns: 1.3fr 1.3fr 1.3fr 1.3fr .8fr auto; }
+  .cols-resp { grid-template-columns: 2fr 1.4fr 1.4fr auto; }
+  .cols-tipo { grid-template-columns: 1.5fr 2.5fr auto; }
+  .cols-evento { grid-template-columns: repeat(4, 1fr); }
+  .cols-evento .actions-cell { grid-column: 1 / -1; display: flex; gap: 8px; justify-content: flex-end; }
   .field label { display: block; font-size: 12.5px; font-weight: 600; color: #2c3c37; margin-bottom: 6px; }
   .field input, .field select { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); font-size: 14px; color: var(--text); transition: border-color .15s, box-shadow .15s; }
   .field input:focus, .field select:focus { outline: none; border-color: var(--leaf); box-shadow: 0 0 0 3px rgba(111,165,44,.16); background: #fff; }
   .form-msg { padding: 0 20px 16px; font-size: 13px; font-weight: 500; }
   .form-msg.err { color: var(--danger); }
   .form-msg.ok { color: var(--ok); }
-
   .table-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
   .table-head h2 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
   .table-tools { display: flex; gap: 10px; align-items: center; }
-
   .panel--table { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; min-width: 560px; }
   thead th { text-align: left; font-size: 11.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 600; padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--paper); white-space: nowrap; }
@@ -86,11 +81,11 @@
   .muted { color: var(--muted); font-size: 12.5px; }
   .pill { display: inline-block; font-size: 12.5px; font-weight: 600; background: #eaf2e0; color: var(--leaf-deep); padding: 3px 10px; border-radius: 20px; }
   .pill.gold { background: #f6ecd4; color: var(--accent-deep); }
+  .pill.blue { background: #e3ecf2; color: #3a5b73; }
   .row-actions { display: flex; gap: 6px; justify-content: flex-end; }
   .icon-btn { border: none; background: none; padding: 6px 9px; border-radius: 6px; font-size: 13px; font-weight: 600; color: var(--muted); }
   .icon-btn:hover { background: var(--paper); color: var(--ink-2); }
   .icon-btn.del:hover { background: #f8e7e2; color: var(--danger); }
-
   .btn { border: none; border-radius: 8px; font-size: 14px; font-weight: 600; padding: 10px 18px; transition: background .15s, transform .05s, border-color .15s; white-space: nowrap; }
   .btn-primary { background: var(--ink); color: #f3f6f3; }
   .btn-primary:hover { background: var(--ink-2); }
@@ -100,16 +95,14 @@
   .btn-ghost:hover { border-color: var(--leaf); background: var(--paper); }
   .btn-cancel { background: none; border: 1px solid var(--line); color: var(--muted); }
   .btn-cancel:hover { border-color: var(--danger); color: var(--danger); }
-
   .empty { padding: 46px 20px; text-align: center; color: var(--muted); }
   .empty .ico { font-size: 28px; display: block; margin-bottom: 10px; }
   .empty p { font-size: 14px; line-height: 1.5; }
   .note { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.55; background: var(--surface); border: 1px dashed var(--line); border-radius: 8px; padding: 12px 14px; }
-
-  @media (max-width: 860px) {
+  .note strong { color: #2c3c37; }
+  @media (max-width: 880px) {
     .summary { grid-template-columns: 1fr; }
-    .cols-safra, .cols-prop, .cols-talhao, .cols-cultura, .cols-campo { grid-template-columns: 1fr 1fr; }
-    .form .full { grid-column: 1 / -1; }
+    .cols-safra, .cols-prop, .cols-talhao, .cols-cultura, .cols-campo, .cols-resp, .cols-tipo, .cols-evento { grid-template-columns: 1fr 1fr; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -117,7 +110,7 @@
 <body>
 
   <header class="topbar">
-    <div class="logo">
+    <a class="logo" href="index.html#painel" style="text-decoration:none;color:inherit;">
       <svg class="logo__mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect width="40" height="40" rx="11" fill="#c9a23c"/>
         <path d="M20 32 C 20 27 20 23 20 19" fill="none" stroke="#173d2d" stroke-width="2.6" stroke-linecap="round"/>
@@ -125,10 +118,10 @@
         <path d="M20 20 C 25 21 29 17 31 11 C 26 11 22 15 20 20 Z" fill="#1e4f39"/>
       </svg>
       <span>Agro Consultancy<small>Produção</small></span>
-    </div>
+    </a>
     <div style="display:flex; align-items:center; gap:12px;">
       <span id="sync-pill" class="sync-pill"></span>
-      <a class="back-link" href="index.html">&larr; Início</a>
+      <a class="back-link" href="index.html#painel">&larr; Voltar ao início</a>
     </div>
   </header>
 
@@ -138,6 +131,9 @@
     <button class="tab" data-tab="talhoes">Talhões</button>
     <button class="tab" data-tab="culturas">Culturas</button>
     <button class="tab" data-tab="campos">Campos da Safra</button>
+    <button class="tab" data-tab="responsaveis">Responsáveis</button>
+    <button class="tab" data-tab="tipos">Tipos de Evento</button>
+    <button class="tab" data-tab="eventos">Eventos</button>
   </nav>
 
   <div class="wrap">
@@ -151,10 +147,7 @@
           <div class="field"><label for="safra-desc">Descrição</label><input type="text" id="safra-desc" placeholder="Ex: Safra de Verão 2026/27" /></div>
           <div class="field"><label for="safra-ini">Início</label><input type="date" id="safra-ini" /></div>
           <div class="field"><label for="safra-fim">Fim</label><input type="date" id="safra-fim" /></div>
-          <div style="display:flex; gap:8px;">
-            <button class="btn btn-primary" id="safra-save">Adicionar</button>
-            <button class="btn btn-cancel" id="safra-cancel" style="display:none;">Cancelar</button>
-          </div>
+          <div style="display:flex; gap:8px;"><button class="btn btn-primary" id="safra-save">Adicionar</button><button class="btn btn-cancel" id="safra-cancel" style="display:none;">Cancelar</button></div>
         </div>
         <div class="form-msg" id="safra-msg"></div>
       </div>
@@ -167,17 +160,14 @@
 
     <!-- ===== PROPRIEDADES ===== -->
     <section class="screen" id="screen-propriedades">
-      <div class="screen-head"><h1>Propriedades rurais</h1><p>Cadastre as fazendas/propriedades. Depois, na aba Talhões, você divide cada propriedade em talhões.</p></div>
+      <div class="screen-head"><h1>Propriedades rurais</h1><p>Cadastre as fazendas/propriedades. Depois, na aba Talhões, divida cada uma em talhões.</p></div>
       <div class="panel">
         <div class="panel__head"><h2 id="prop-form-title">Adicionar propriedade</h2></div>
         <div class="form cols-prop">
           <div class="field"><label for="prop-nome">Nome da propriedade</label><input type="text" id="prop-nome" placeholder="Ex: Fazenda Santa Rita" /></div>
           <div class="field"><label for="prop-local">Localização (opcional)</label><input type="text" id="prop-local" placeholder="Ex: Castro - PR" /></div>
           <div class="field"><label for="prop-area">Área total (ha)</label><input type="number" id="prop-area" min="0" step="any" placeholder="0" /></div>
-          <div style="display:flex; gap:8px;">
-            <button class="btn btn-primary" id="prop-save">Adicionar</button>
-            <button class="btn btn-cancel" id="prop-cancel" style="display:none;">Cancelar</button>
-          </div>
+          <div style="display:flex; gap:8px;"><button class="btn btn-primary" id="prop-save">Adicionar</button><button class="btn btn-cancel" id="prop-cancel" style="display:none;">Cancelar</button></div>
         </div>
         <div class="form-msg" id="prop-msg"></div>
       </div>
@@ -197,32 +187,26 @@
           <div class="field"><label for="talhao-prop">Propriedade</label><select id="talhao-prop"></select></div>
           <div class="field"><label for="talhao-nome">Nome do talhão</label><input type="text" id="talhao-nome" placeholder="Ex: Talhão 1 / Gleba A" /></div>
           <div class="field"><label for="talhao-area">Área (ha)</label><input type="number" id="talhao-area" min="0" step="any" placeholder="0" /></div>
-          <div style="display:flex; gap:8px;">
-            <button class="btn btn-primary" id="talhao-save">Adicionar</button>
-            <button class="btn btn-cancel" id="talhao-cancel" style="display:none;">Cancelar</button>
-          </div>
+          <div style="display:flex; gap:8px;"><button class="btn btn-primary" id="talhao-save">Adicionar</button><button class="btn btn-cancel" id="talhao-cancel" style="display:none;">Cancelar</button></div>
         </div>
         <div class="form-msg" id="talhao-msg"></div>
       </div>
       <div class="table-head"><h2>Talhões cadastrados</h2></div>
       <div class="panel panel--table">
         <table><thead><tr><th>Propriedade</th><th>Talhão</th><th class="num">Área (ha)</th><th class="num">Ações</th></tr></thead><tbody id="talhao-tbody"></tbody></table>
-        <div class="empty" id="talhao-empty"><span class="ico">🗺️</span><p>Nenhum talhão ainda.<br>Cadastre uma propriedade primeiro, depois os talhões.</p></div>
+        <div class="empty" id="talhao-empty"><span class="ico">🗺️</span><p>Nenhum talhão ainda.<br>Cadastre uma propriedade primeiro.</p></div>
       </div>
     </section>
 
     <!-- ===== CULTURAS ===== -->
     <section class="screen" id="screen-culturas">
-      <div class="screen-head"><h1>Culturas / Alimentos</h1><p>O que é produzido — soja, milho, leite, etc. A unidade ajuda a medir a produção (sacas, kg, litros...).</p></div>
+      <div class="screen-head"><h1>Culturas / Alimentos</h1><p>O que é produzido — soja, milho, leite, etc.</p></div>
       <div class="panel">
         <div class="panel__head"><h2 id="cultura-form-title">Adicionar cultura</h2></div>
         <div class="form cols-cultura">
           <div class="field"><label for="cultura-nome">Nome</label><input type="text" id="cultura-nome" placeholder="Ex: Soja" /></div>
           <div class="field"><label for="cultura-unidade">Unidade</label><input type="text" id="cultura-unidade" placeholder="sacas, kg, L..." /></div>
-          <div style="display:flex; gap:8px;">
-            <button class="btn btn-primary" id="cultura-save">Adicionar</button>
-            <button class="btn btn-cancel" id="cultura-cancel" style="display:none;">Cancelar</button>
-          </div>
+          <div style="display:flex; gap:8px;"><button class="btn btn-primary" id="cultura-save">Adicionar</button><button class="btn btn-cancel" id="cultura-cancel" style="display:none;">Cancelar</button></div>
         </div>
         <div class="form-msg" id="cultura-msg"></div>
       </div>
@@ -235,7 +219,7 @@
 
     <!-- ===== CAMPOS DA SAFRA ===== -->
     <section class="screen" id="screen-campos">
-      <div class="screen-head"><h1>Campos da Safra</h1><p>Aqui você define o que será produzido em cada talhão: escolha a safra, a propriedade, o talhão e a cultura.</p></div>
+      <div class="screen-head"><h1>Campos da Safra</h1><p>Define o que será produzido em cada talhão: safra, propriedade, talhão e cultura.</p></div>
       <div class="summary">
         <div class="stat"><div class="stat__label">Campos cadastrados</div><div class="stat__value" id="campo-total">0</div></div>
         <div class="stat"><div class="stat__label">Área plantada (ha)</div><div class="stat__value accent" id="campo-area">0</div></div>
@@ -248,35 +232,98 @@
           <div class="field"><label for="campo-prop">Propriedade</label><select id="campo-prop"></select></div>
           <div class="field"><label for="campo-talhao">Talhão</label><select id="campo-talhao"></select></div>
           <div class="field"><label for="campo-cultura">Cultura</label><select id="campo-cultura"></select></div>
-          <div class="field"><label for="campo-area">Área (ha)</label><input type="number" id="campo-area" min="0" step="any" placeholder="0" /></div>
-          <div style="display:flex; gap:8px;">
-            <button class="btn btn-primary" id="campo-save">Adicionar</button>
-            <button class="btn btn-cancel" id="campo-cancel" style="display:none;">Cancelar</button>
-          </div>
+          <div class="field"><label for="campo-area-in">Área (ha)</label><input type="number" id="campo-area-in" min="0" step="any" placeholder="0" /></div>
+          <div style="display:flex; gap:8px;"><button class="btn btn-primary" id="campo-save">Adicionar</button><button class="btn btn-cancel" id="campo-cancel" style="display:none;">Cancelar</button></div>
         </div>
         <div class="form-msg" id="campo-msg"></div>
       </div>
-      <div class="table-head">
-        <h2>Campos planejados</h2>
-        <div class="table-tools"><button class="btn btn-ghost" id="campo-export">⬇ Exportar planilha</button></div>
-      </div>
+      <div class="table-head"><h2>Campos planejados</h2><div class="table-tools"><button class="btn btn-ghost" id="campo-export">⬇ Exportar planilha</button></div></div>
       <div class="panel panel--table">
         <table><thead><tr><th>Safra</th><th>Propriedade</th><th>Talhão</th><th>Cultura</th><th class="num">Área (ha)</th><th class="num">Ações</th></tr></thead><tbody id="campo-tbody"></tbody></table>
-        <div class="empty" id="campo-empty"><span class="ico">🚜</span><p>Nenhum campo ainda.<br>Cadastre safras, propriedades, talhões e culturas; depois monte os campos aqui.</p></div>
+        <div class="empty" id="campo-empty"><span class="ico">🚜</span><p>Nenhum campo ainda.<br>Cadastre safras, propriedades, talhões e culturas primeiro.</p></div>
       </div>
+    </section>
+
+    <!-- ===== RESPONSÁVEIS ===== -->
+    <section class="screen" id="screen-responsaveis">
+      <div class="screen-head"><h1>Responsáveis</h1><p>As pessoas que executam as atividades no campo. São usadas ao lançar eventos.</p></div>
+      <div class="panel">
+        <div class="panel__head"><h2 id="resp-form-title">Adicionar responsável</h2></div>
+        <div class="form cols-resp">
+          <div class="field"><label for="resp-nome">Nome</label><input type="text" id="resp-nome" placeholder="Ex: João da Silva" /></div>
+          <div class="field"><label for="resp-funcao">Função (opcional)</label><input type="text" id="resp-funcao" placeholder="Ex: Operador / Agrônomo" /></div>
+          <div class="field"><label for="resp-contato">Contato (opcional)</label><input type="text" id="resp-contato" placeholder="Telefone / e-mail" /></div>
+          <div style="display:flex; gap:8px;"><button class="btn btn-primary" id="resp-save">Adicionar</button><button class="btn btn-cancel" id="resp-cancel" style="display:none;">Cancelar</button></div>
+        </div>
+        <div class="form-msg" id="resp-msg"></div>
+      </div>
+      <div class="table-head"><h2>Responsáveis cadastrados</h2></div>
+      <div class="panel panel--table">
+        <table><thead><tr><th>Nome</th><th>Função</th><th>Contato</th><th class="num">Ações</th></tr></thead><tbody id="resp-tbody"></tbody></table>
+        <div class="empty" id="resp-empty"><span class="ico">👤</span><p>Nenhum responsável ainda.<br>Cadastre o primeiro acima.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== TIPOS DE EVENTO ===== -->
+    <section class="screen" id="screen-tipos">
+      <div class="screen-head"><h1>Tipos de Evento</h1><p>Os tipos de atividade que acontecem no campo — pulverização, adubação, plantio, colheita, etc.</p></div>
+      <div class="panel">
+        <div class="panel__head"><h2 id="tipo-form-title">Adicionar tipo</h2></div>
+        <div class="form cols-tipo">
+          <div class="field"><label for="tipo-nome">Nome</label><input type="text" id="tipo-nome" placeholder="Ex: Pulverização" /></div>
+          <div class="field"><label for="tipo-desc">Descrição (opcional)</label><input type="text" id="tipo-desc" placeholder="Detalhe do tipo de evento" /></div>
+          <div style="display:flex; gap:8px;"><button class="btn btn-primary" id="tipo-save">Adicionar</button><button class="btn btn-cancel" id="tipo-cancel" style="display:none;">Cancelar</button></div>
+        </div>
+        <div class="form-msg" id="tipo-msg"></div>
+      </div>
+      <div class="table-head"><h2>Tipos cadastrados</h2></div>
+      <div class="panel panel--table">
+        <table><thead><tr><th>Tipo</th><th>Descrição</th><th class="num">Ações</th></tr></thead><tbody id="tipo-tbody"></tbody></table>
+        <div class="empty" id="tipo-empty"><span class="ico">🏷️</span><p>Nenhum tipo ainda.<br>Cadastre o primeiro acima (ex: Pulverização, Adubação).</p></div>
+      </div>
+    </section>
+
+    <!-- ===== EVENTOS ===== -->
+    <section class="screen" id="screen-eventos">
+      <div class="screen-head"><h1>Eventos</h1><p>Registre as atividades feitas em cada campo: o tipo, quem fez, o tempo gasto e — se houver consumo — o item, o depósito e a quantidade usada.</p></div>
+      <div class="summary">
+        <div class="stat"><div class="stat__label">Eventos registrados</div><div class="stat__value" id="evento-total">0</div></div>
+        <div class="stat"><div class="stat__label">Horas totais</div><div class="stat__value accent" id="evento-horas">0</div></div>
+        <div class="stat"><div class="stat__label">Eventos com consumo</div><div class="stat__value" id="evento-consumo">0</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel__head"><h2 id="evento-form-title">Adicionar evento</h2></div>
+        <div class="form cols-evento">
+          <div class="field"><label for="evento-campo">Campo</label><select id="evento-campo"></select></div>
+          <div class="field"><label for="evento-tipo">Tipo de evento</label><select id="evento-tipo"></select></div>
+          <div class="field"><label for="evento-resp">Responsável</label><select id="evento-resp"></select></div>
+          <div class="field"><label for="evento-data">Data</label><input type="date" id="evento-data" /></div>
+          <div class="field"><label for="evento-tempo">Tempo gasto (h)</label><input type="number" id="evento-tempo" min="0" step="any" placeholder="0" /></div>
+          <div class="field"><label for="evento-item">Item consumido</label><select id="evento-item"></select></div>
+          <div class="field"><label for="evento-deposito">Depósito</label><select id="evento-deposito"></select></div>
+          <div class="field"><label for="evento-qtd">Quantidade</label><input type="number" id="evento-qtd" min="0" step="any" placeholder="0" /></div>
+          <div class="actions-cell"><button class="btn btn-primary" id="evento-save">Adicionar</button><button class="btn btn-cancel" id="evento-cancel" style="display:none;">Cancelar</button></div>
+        </div>
+        <div class="form-msg" id="evento-msg"></div>
+      </div>
+      <div class="table-head"><h2>Eventos registrados</h2><div class="table-tools"><button class="btn btn-ghost" id="evento-export">⬇ Exportar planilha</button></div></div>
+      <div class="panel panel--table">
+        <table><thead><tr><th>Data</th><th>Campo</th><th>Tipo</th><th>Responsável</th><th class="num">Tempo (h)</th><th>Consumo</th><th class="num">Ações</th></tr></thead><tbody id="evento-tbody"></tbody></table>
+        <div class="empty" id="evento-empty"><span class="ico">🧪</span><p>Nenhum evento ainda.<br>Cadastre campos e tipos de evento primeiro.</p></div>
+      </div>
+      <div class="note"><strong>Sobre o consumo:</strong> o item e a quantidade ficam registrados no evento. A baixa automática no saldo do Estoque ainda não está ligada — quando você quiser, a gente conecta isso (saída de estoque).</div>
     </section>
 
   </div>
 
   <script>
     const KEY = 'agroconsultancy_producao_v1';
-
-    /* ====== CONFIG DA NUVEM (mesma planilha do Estoque) ====== */
     const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwYOQ3SvFnURrjzq0rgqPDSQ9zh3U4OZaibla8SzEnMHTmKAPLvE1QscAUBcuVxU1VoYg/exec';
     const SHEETS_SECRET = '200198';
 
-    let db = { safras: [], propriedades: [], talhoes: [], culturas: [], campos: [] };
-    let edit = { safra: null, prop: null, talhao: null, cultura: null, campo: null };
+    const EMPTY = { safras: [], propriedades: [], talhoes: [], culturas: [], campos: [], responsaveis: [], tipos_evento: [], eventos: [], itens: [], depositos: [] };
+    let db = Object.assign({}, EMPTY);
+    let edit = { safra: null, prop: null, talhao: null, cultura: null, campo: null, resp: null, tipo: null, evento: null };
 
     const cloudOn = () => SHEETS_URL.trim().length > 0;
     let pushTimer = null;
@@ -287,13 +334,13 @@
       const [txt,cls] = map[state] || ['',''];
       el.textContent = txt; el.className = 'sync-pill ' + cls;
     }
-    function load(){ try{ const raw=localStorage.getItem(KEY); if(raw) db=Object.assign({safras:[],propriedades:[],talhoes:[],culturas:[],campos:[]}, JSON.parse(raw)); }catch(e){} }
+    function load(){ try{ const raw=localStorage.getItem(KEY); if(raw) db=Object.assign({}, EMPTY, JSON.parse(raw)); }catch(e){} }
     function save(){ try{ localStorage.setItem(KEY, JSON.stringify(db)); }catch(e){} schedulePush(); }
     function schedulePush(){ if(!cloudOn())return; setSync('saving'); clearTimeout(pushTimer); pushTimer=setTimeout(pushCloud,800); }
     async function pushCloud(){
       try{
         await fetch(SHEETS_URL, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
-          body: JSON.stringify({ secret:SHEETS_SECRET, safras:db.safras, propriedades:db.propriedades, talhoes:db.talhoes, culturas:db.culturas, campos:db.campos }) });
+          body: JSON.stringify({ secret:SHEETS_SECRET, safras:db.safras, propriedades:db.propriedades, talhoes:db.talhoes, culturas:db.culturas, campos:db.campos, responsaveis:db.responsaveis, tipos_evento:db.tipos_evento, eventos:db.eventos }) });
         setSync('ok');
       }catch(e){ setSync('offline'); }
     }
@@ -309,14 +356,20 @@
             propriedades: (data.propriedades||[]).map(p=>({ id:String(p.id), nome:String(p.nome||''), local:String(p.local||''), area:Number(p.area)||0 })),
             talhoes: (data.talhoes||[]).map(t=>({ id:String(t.id), propriedadeId:String(t.propriedadeId||''), nome:String(t.nome||''), area:Number(t.area)||0 })),
             culturas: (data.culturas||[]).map(c=>({ id:String(c.id), nome:String(c.nome||''), unidade:String(c.unidade||'') })),
-            campos: (data.campos||[]).map(c=>({ id:String(c.id), safraId:String(c.safraId||''), propriedadeId:String(c.propriedadeId||''), talhaoId:String(c.talhaoId||''), culturaId:String(c.culturaId||''), area:Number(c.area)||0, obs:String(c.obs||'') }))
+            campos: (data.campos||[]).map(c=>({ id:String(c.id), safraId:String(c.safraId||''), propriedadeId:String(c.propriedadeId||''), talhaoId:String(c.talhaoId||''), culturaId:String(c.culturaId||''), area:Number(c.area)||0, obs:String(c.obs||'') })),
+            responsaveis: (data.responsaveis||[]).map(r=>({ id:String(r.id), nome:String(r.nome||''), funcao:String(r.funcao||''), contato:String(r.contato||'') })),
+            tipos_evento: (data.tipos_evento||[]).map(t=>({ id:String(t.id), nome:String(t.nome||''), descricao:String(t.descricao||'') })),
+            eventos: (data.eventos||[]).map(e=>({ id:String(e.id), campoId:String(e.campoId||''), tipoEventoId:String(e.tipoEventoId||''), responsavelId:String(e.responsavelId||''), data:String(e.data||''), tempo:Number(e.tempo)||0, itemId:String(e.itemId||''), depositoId:String(e.depositoId||''), quantidade:Number(e.quantidade)||0, obs:String(e.obs||'') })),
+            // somente leitura (vindos do módulo Estoque), nunca reenviados
+            itens: (data.itens||[]).map(i=>({ id:String(i.id), codigo:String(i.codigo||''), nome:String(i.nome||''), unidade:String(i.unidade||'') })),
+            depositos: (data.depositos||[]).map(d=>({ id:String(d.id), nome:String(d.nome||''), local:String(d.local||'') }))
           };
           try{ localStorage.setItem(KEY, JSON.stringify(db)); }catch(e){}
           renderAll(); setSync('ok');
         } else { setSync('offline'); }
       }catch(e){ setSync('offline'); }
     }
-    function renderAll(){ renderSafras(); renderPropriedades(); renderTalhoes(); renderCulturas(); refreshSelects(); renderCampos(); }
+    function renderAll(){ renderSafras(); renderPropriedades(); renderTalhoes(); renderCulturas(); renderResponsaveis(); renderTipos(); refreshSelects(); renderCampos(); renderEventos(); }
 
     const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,6);
     const $ = id => document.getElementById(id);
@@ -326,223 +379,189 @@
     function flash(el,text,type){ el.textContent=text; el.className='form-msg '+(type||''); if(text){ setTimeout(()=>{ if(el.textContent===text){ el.textContent=''; el.className='form-msg'; } },4000); } }
     function fmtData(iso){ if(!iso) return '—'; const p=String(iso).split('-'); return p.length===3 ? `${p[2]}/${p[1]}/${p[0]}` : iso; }
 
-    const safraById = id => db.safras.find(s=>s.id===id);
-    const propById = id => db.propriedades.find(p=>p.id===id);
-    const talhaoById = id => db.talhoes.find(t=>t.id===id);
-    const culturaById = id => db.culturas.find(c=>c.id===id);
+    const safraById=id=>db.safras.find(s=>s.id===id);
+    const propById=id=>db.propriedades.find(p=>p.id===id);
+    const talhaoById=id=>db.talhoes.find(t=>t.id===id);
+    const culturaById=id=>db.culturas.find(c=>c.id===id);
+    const respById=id=>db.responsaveis.find(r=>r.id===id);
+    const tipoById=id=>db.tipos_evento.find(t=>t.id===id);
+    const campoById=id=>db.campos.find(c=>c.id===id);
+    const itemById=id=>db.itens.find(i=>i.id===id);
+    const depById=id=>db.depositos.find(d=>d.id===id);
+    function campoLabel(c){ if(!c) return '—'; const s=safraById(c.safraId), t=talhaoById(c.talhaoId), cu=culturaById(c.culturaId); return `${s?s.descricao:'?'} · ${t?t.nome:'?'} · ${cu?cu.nome:'?'}`; }
 
     /* ===== SAFRAS ===== */
-    function renderSafras(){
-      const tb=$('safra-tbody'); tb.innerHTML='';
-      $('safra-empty').style.display = db.safras.length ? 'none':'block';
-      db.safras.forEach(s=>{
-        const tr=document.createElement('tr');
-        tr.innerHTML=`<td><span class="strong">${escapeHtml(s.descricao)}</span></td>
-          <td><span class="muted">${fmtData(s.inicio)}</span></td>
-          <td><span class="muted">${fmtData(s.fim)}</span></td>
-          <td class="num"><div class="row-actions"><button class="icon-btn" data-safra-edit="${s.id}">Editar</button><button class="icon-btn del" data-safra-del="${s.id}">Excluir</button></div></td>`;
-        tb.appendChild(tr);
-      });
-    }
-    function salvarSafra(){
-      const descricao=$('safra-desc').value.trim(), inicio=$('safra-ini').value, fim=$('safra-fim').value;
+    function renderSafras(){ const tb=$('safra-tbody'); tb.innerHTML=''; $('safra-empty').style.display=db.safras.length?'none':'block';
+      db.safras.forEach(s=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td><span class="strong">${escapeHtml(s.descricao)}</span></td><td><span class="muted">${fmtData(s.inicio)}</span></td><td><span class="muted">${fmtData(s.fim)}</span></td><td class="num"><div class="row-actions"><button class="icon-btn" data-safra-edit="${s.id}">Editar</button><button class="icon-btn del" data-safra-del="${s.id}">Excluir</button></div></td>`; tb.appendChild(tr); }); }
+    function salvarSafra(){ const descricao=$('safra-desc').value.trim(), inicio=$('safra-ini').value, fim=$('safra-fim').value;
       if(!descricao){ flash($('safra-msg'),'Informe a descrição da safra.','err'); $('safra-desc').focus(); return; }
-      if(inicio && fim && fim < inicio){ flash($('safra-msg'),'A data de fim não pode ser antes do início.','err'); return; }
+      if(inicio&&fim&&fim<inicio){ flash($('safra-msg'),'A data de fim não pode ser antes do início.','err'); return; }
       if(edit.safra){ const s=safraById(edit.safra); if(s){ s.descricao=descricao; s.inicio=inicio; s.fim=fim; } cancelSafra(); flash($('safra-msg'),'Safra atualizada.','ok'); }
       else { db.safras.push({ id:uid(), descricao, inicio, fim }); flash($('safra-msg'),'Safra adicionada.','ok'); }
-      save(); renderSafras(); refreshSelects(); $('safra-desc').value=''; $('safra-ini').value=''; $('safra-fim').value=''; $('safra-desc').focus();
-    }
+      save(); renderSafras(); refreshSelects(); $('safra-desc').value=''; $('safra-ini').value=''; $('safra-fim').value=''; $('safra-desc').focus(); }
     function editarSafra(id){ const s=safraById(id); if(!s)return; edit.safra=id; $('safra-desc').value=s.descricao; $('safra-ini').value=s.inicio||''; $('safra-fim').value=s.fim||''; $('safra-form-title').textContent='Editar safra'; $('safra-save').textContent='Salvar'; $('safra-cancel').style.display='inline-block'; $('safra-desc').focus(); }
     function cancelSafra(){ edit.safra=null; $('safra-form-title').textContent='Adicionar safra'; $('safra-save').textContent='Adicionar'; $('safra-cancel').style.display='none'; $('safra-desc').value=''; $('safra-ini').value=''; $('safra-fim').value=''; }
     function excluirSafra(id){ if(db.campos.some(c=>c.safraId===id)){ flash($('safra-msg'),'Não dá pra excluir: há campos usando esta safra.','err'); return; } const s=safraById(id); if(s&&confirm(`Excluir a safra "${s.descricao}"?`)){ db.safras=db.safras.filter(x=>x.id!==id); if(edit.safra===id)cancelSafra(); save(); renderSafras(); refreshSelects(); } }
 
     /* ===== PROPRIEDADES ===== */
     function talhoesDe(propId){ return db.talhoes.filter(t=>t.propriedadeId===propId); }
-    function renderPropriedades(){
-      const tb=$('prop-tbody'); tb.innerHTML='';
-      $('prop-empty').style.display = db.propriedades.length ? 'none':'block';
-      db.propriedades.forEach(p=>{
-        const tr=document.createElement('tr');
-        tr.innerHTML=`<td><span class="strong">${escapeHtml(p.nome)}</span></td>
-          <td><span class="muted">${escapeHtml(p.local)||'—'}</span></td>
-          <td class="num">${p.area?numBR(p.area):'—'}</td>
-          <td class="num">${talhoesDe(p.id).length}</td>
-          <td class="num"><div class="row-actions"><button class="icon-btn" data-prop-edit="${p.id}">Editar</button><button class="icon-btn del" data-prop-del="${p.id}">Excluir</button></div></td>`;
-        tb.appendChild(tr);
-      });
-    }
-    function salvarProp(){
-      const nome=$('prop-nome').value.trim(), local=$('prop-local').value.trim(), area=$('prop-area').value===''?0:Number($('prop-area').value);
+    function renderPropriedades(){ const tb=$('prop-tbody'); tb.innerHTML=''; $('prop-empty').style.display=db.propriedades.length?'none':'block';
+      db.propriedades.forEach(p=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td><span class="strong">${escapeHtml(p.nome)}</span></td><td><span class="muted">${escapeHtml(p.local)||'—'}</span></td><td class="num">${p.area?numBR(p.area):'—'}</td><td class="num">${talhoesDe(p.id).length}</td><td class="num"><div class="row-actions"><button class="icon-btn" data-prop-edit="${p.id}">Editar</button><button class="icon-btn del" data-prop-del="${p.id}">Excluir</button></div></td>`; tb.appendChild(tr); }); }
+    function salvarProp(){ const nome=$('prop-nome').value.trim(), local=$('prop-local').value.trim(), area=$('prop-area').value===''?0:Number($('prop-area').value);
       if(!nome){ flash($('prop-msg'),'Informe o nome da propriedade.','err'); $('prop-nome').focus(); return; }
-      const dup=db.propriedades.find(p=>norm(p.nome)===norm(nome)&&p.id!==edit.prop);
-      if(dup){ flash($('prop-msg'),`Já existe uma propriedade chamada "${dup.nome}".`,'err'); return; }
+      const dup=db.propriedades.find(p=>norm(p.nome)===norm(nome)&&p.id!==edit.prop); if(dup){ flash($('prop-msg'),`Já existe uma propriedade chamada "${dup.nome}".`,'err'); return; }
       if(edit.prop){ const p=propById(edit.prop); if(p){ p.nome=nome; p.local=local; p.area=area; } cancelProp(); flash($('prop-msg'),'Propriedade atualizada.','ok'); }
       else { db.propriedades.push({ id:uid(), nome, local, area }); flash($('prop-msg'),'Propriedade adicionada.','ok'); }
-      save(); renderPropriedades(); refreshSelects(); $('prop-nome').value=''; $('prop-local').value=''; $('prop-area').value=''; $('prop-nome').focus();
-    }
+      save(); renderPropriedades(); refreshSelects(); $('prop-nome').value=''; $('prop-local').value=''; $('prop-area').value=''; $('prop-nome').focus(); }
     function editarProp(id){ const p=propById(id); if(!p)return; edit.prop=id; $('prop-nome').value=p.nome; $('prop-local').value=p.local||''; $('prop-area').value=p.area||''; $('prop-form-title').textContent='Editar propriedade'; $('prop-save').textContent='Salvar'; $('prop-cancel').style.display='inline-block'; $('prop-nome').focus(); }
     function cancelProp(){ edit.prop=null; $('prop-form-title').textContent='Adicionar propriedade'; $('prop-save').textContent='Adicionar'; $('prop-cancel').style.display='none'; $('prop-nome').value=''; $('prop-local').value=''; $('prop-area').value=''; }
-    function excluirProp(id){
-      if(talhoesDe(id).length){ flash($('prop-msg'),'Não dá pra excluir: esta propriedade tem talhões cadastrados.','err'); return; }
-      if(db.campos.some(c=>c.propriedadeId===id)){ flash($('prop-msg'),'Não dá pra excluir: há campos usando esta propriedade.','err'); return; }
-      const p=propById(id); if(p&&confirm(`Excluir a propriedade "${p.nome}"?`)){ db.propriedades=db.propriedades.filter(x=>x.id!==id); if(edit.prop===id)cancelProp(); save(); renderPropriedades(); refreshSelects(); }
-    }
+    function excluirProp(id){ if(talhoesDe(id).length){ flash($('prop-msg'),'Não dá pra excluir: tem talhões cadastrados.','err'); return; } if(db.campos.some(c=>c.propriedadeId===id)){ flash($('prop-msg'),'Não dá pra excluir: há campos usando esta propriedade.','err'); return; } const p=propById(id); if(p&&confirm(`Excluir a propriedade "${p.nome}"?`)){ db.propriedades=db.propriedades.filter(x=>x.id!==id); if(edit.prop===id)cancelProp(); save(); renderPropriedades(); refreshSelects(); } }
 
     /* ===== TALHÕES ===== */
-    function renderTalhoes(){
-      const tb=$('talhao-tbody'); tb.innerHTML='';
-      $('talhao-empty').style.display = db.talhoes.length ? 'none':'block';
-      db.talhoes.forEach(t=>{
-        const p=propById(t.propriedadeId);
-        const tr=document.createElement('tr');
-        tr.innerHTML=`<td>${p?escapeHtml(p.nome):'<i>propriedade removida</i>'}</td>
-          <td><span class="strong">${escapeHtml(t.nome)}</span></td>
-          <td class="num">${t.area?numBR(t.area):'—'}</td>
-          <td class="num"><div class="row-actions"><button class="icon-btn" data-talhao-edit="${t.id}">Editar</button><button class="icon-btn del" data-talhao-del="${t.id}">Excluir</button></div></td>`;
-        tb.appendChild(tr);
-      });
-    }
-    function salvarTalhao(){
-      const propriedadeId=$('talhao-prop').value, nome=$('talhao-nome').value.trim(), area=$('talhao-area').value===''?0:Number($('talhao-area').value);
+    function renderTalhoes(){ const tb=$('talhao-tbody'); tb.innerHTML=''; $('talhao-empty').style.display=db.talhoes.length?'none':'block';
+      db.talhoes.forEach(t=>{ const p=propById(t.propriedadeId); const tr=document.createElement('tr'); tr.innerHTML=`<td>${p?escapeHtml(p.nome):'<i>removida</i>'}</td><td><span class="strong">${escapeHtml(t.nome)}</span></td><td class="num">${t.area?numBR(t.area):'—'}</td><td class="num"><div class="row-actions"><button class="icon-btn" data-talhao-edit="${t.id}">Editar</button><button class="icon-btn del" data-talhao-del="${t.id}">Excluir</button></div></td>`; tb.appendChild(tr); }); }
+    function salvarTalhao(){ const propriedadeId=$('talhao-prop').value, nome=$('talhao-nome').value.trim(), area=$('talhao-area').value===''?0:Number($('talhao-area').value);
       if(!propriedadeId){ flash($('talhao-msg'),'Selecione a propriedade.','err'); return; }
       if(!nome){ flash($('talhao-msg'),'Informe o nome do talhão.','err'); $('talhao-nome').focus(); return; }
-      const dup=db.talhoes.find(t=>t.propriedadeId===propriedadeId&&norm(t.nome)===norm(nome)&&t.id!==edit.talhao);
-      if(dup){ flash($('talhao-msg'),'Já existe um talhão com esse nome nesta propriedade.','err'); return; }
+      const dup=db.talhoes.find(t=>t.propriedadeId===propriedadeId&&norm(t.nome)===norm(nome)&&t.id!==edit.talhao); if(dup){ flash($('talhao-msg'),'Já existe um talhão com esse nome nesta propriedade.','err'); return; }
       if(edit.talhao){ const t=talhaoById(edit.talhao); if(t){ t.propriedadeId=propriedadeId; t.nome=nome; t.area=area; } cancelTalhao(); flash($('talhao-msg'),'Talhão atualizado.','ok'); }
       else { db.talhoes.push({ id:uid(), propriedadeId, nome, area }); flash($('talhao-msg'),'Talhão adicionado.','ok'); }
-      save(); renderTalhoes(); renderPropriedades(); refreshSelects(); $('talhao-nome').value=''; $('talhao-area').value=''; $('talhao-nome').focus();
-    }
+      save(); renderTalhoes(); renderPropriedades(); refreshSelects(); $('talhao-nome').value=''; $('talhao-area').value=''; $('talhao-nome').focus(); }
     function editarTalhao(id){ const t=talhaoById(id); if(!t)return; edit.talhao=id; $('talhao-prop').value=t.propriedadeId; $('talhao-nome').value=t.nome; $('talhao-area').value=t.area||''; $('talhao-form-title').textContent='Editar talhão'; $('talhao-save').textContent='Salvar'; $('talhao-cancel').style.display='inline-block'; $('talhao-nome').focus(); }
     function cancelTalhao(){ edit.talhao=null; $('talhao-form-title').textContent='Adicionar talhão'; $('talhao-save').textContent='Adicionar'; $('talhao-cancel').style.display='none'; $('talhao-nome').value=''; $('talhao-area').value=''; }
     function excluirTalhao(id){ if(db.campos.some(c=>c.talhaoId===id)){ flash($('talhao-msg'),'Não dá pra excluir: há campos usando este talhão.','err'); return; } const t=talhaoById(id); if(t&&confirm(`Excluir o talhão "${t.nome}"?`)){ db.talhoes=db.talhoes.filter(x=>x.id!==id); if(edit.talhao===id)cancelTalhao(); save(); renderTalhoes(); renderPropriedades(); refreshSelects(); } }
 
     /* ===== CULTURAS ===== */
-    function renderCulturas(){
-      const tb=$('cultura-tbody'); tb.innerHTML='';
-      $('cultura-empty').style.display = db.culturas.length ? 'none':'block';
-      db.culturas.forEach(c=>{
-        const tr=document.createElement('tr');
-        tr.innerHTML=`<td><span class="strong">${escapeHtml(c.nome)}</span></td>
-          <td><span class="muted">${escapeHtml(c.unidade)||'—'}</span></td>
-          <td class="num"><div class="row-actions"><button class="icon-btn" data-cultura-edit="${c.id}">Editar</button><button class="icon-btn del" data-cultura-del="${c.id}">Excluir</button></div></td>`;
-        tb.appendChild(tr);
-      });
-    }
-    function salvarCultura(){
-      const nome=$('cultura-nome').value.trim(), unidade=$('cultura-unidade').value.trim();
+    function renderCulturas(){ const tb=$('cultura-tbody'); tb.innerHTML=''; $('cultura-empty').style.display=db.culturas.length?'none':'block';
+      db.culturas.forEach(c=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td><span class="strong">${escapeHtml(c.nome)}</span></td><td><span class="muted">${escapeHtml(c.unidade)||'—'}</span></td><td class="num"><div class="row-actions"><button class="icon-btn" data-cultura-edit="${c.id}">Editar</button><button class="icon-btn del" data-cultura-del="${c.id}">Excluir</button></div></td>`; tb.appendChild(tr); }); }
+    function salvarCultura(){ const nome=$('cultura-nome').value.trim(), unidade=$('cultura-unidade').value.trim();
       if(!nome){ flash($('cultura-msg'),'Informe o nome da cultura.','err'); $('cultura-nome').focus(); return; }
-      const dup=db.culturas.find(c=>norm(c.nome)===norm(nome)&&c.id!==edit.cultura);
-      if(dup){ flash($('cultura-msg'),`"${dup.nome}" já está cadastrada.`,'err'); return; }
+      const dup=db.culturas.find(c=>norm(c.nome)===norm(nome)&&c.id!==edit.cultura); if(dup){ flash($('cultura-msg'),`"${dup.nome}" já está cadastrada.`,'err'); return; }
       if(edit.cultura){ const c=culturaById(edit.cultura); if(c){ c.nome=nome; c.unidade=unidade; } cancelCultura(); flash($('cultura-msg'),'Cultura atualizada.','ok'); }
       else { db.culturas.push({ id:uid(), nome, unidade }); flash($('cultura-msg'),'Cultura adicionada.','ok'); }
-      save(); renderCulturas(); refreshSelects(); $('cultura-nome').value=''; $('cultura-unidade').value=''; $('cultura-nome').focus();
-    }
+      save(); renderCulturas(); refreshSelects(); $('cultura-nome').value=''; $('cultura-unidade').value=''; $('cultura-nome').focus(); }
     function editarCultura(id){ const c=culturaById(id); if(!c)return; edit.cultura=id; $('cultura-nome').value=c.nome; $('cultura-unidade').value=c.unidade||''; $('cultura-form-title').textContent='Editar cultura'; $('cultura-save').textContent='Salvar'; $('cultura-cancel').style.display='inline-block'; $('cultura-nome').focus(); }
     function cancelCultura(){ edit.cultura=null; $('cultura-form-title').textContent='Adicionar cultura'; $('cultura-save').textContent='Adicionar'; $('cultura-cancel').style.display='none'; $('cultura-nome').value=''; $('cultura-unidade').value=''; }
     function excluirCultura(id){ if(db.campos.some(c=>c.culturaId===id)){ flash($('cultura-msg'),'Não dá pra excluir: há campos usando esta cultura.','err'); return; } const c=culturaById(id); if(c&&confirm(`Excluir a cultura "${c.nome}"?`)){ db.culturas=db.culturas.filter(x=>x.id!==id); if(edit.cultura===id)cancelCultura(); save(); renderCulturas(); refreshSelects(); } }
 
-    /* ===== CAMPOS DA SAFRA ===== */
+    /* ===== RESPONSÁVEIS ===== */
+    function renderResponsaveis(){ const tb=$('resp-tbody'); tb.innerHTML=''; $('resp-empty').style.display=db.responsaveis.length?'none':'block';
+      db.responsaveis.forEach(r=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td><span class="strong">${escapeHtml(r.nome)}</span></td><td><span class="muted">${escapeHtml(r.funcao)||'—'}</span></td><td><span class="muted">${escapeHtml(r.contato)||'—'}</span></td><td class="num"><div class="row-actions"><button class="icon-btn" data-resp-edit="${r.id}">Editar</button><button class="icon-btn del" data-resp-del="${r.id}">Excluir</button></div></td>`; tb.appendChild(tr); }); }
+    function salvarResp(){ const nome=$('resp-nome').value.trim(), funcao=$('resp-funcao').value.trim(), contato=$('resp-contato').value.trim();
+      if(!nome){ flash($('resp-msg'),'Informe o nome.','err'); $('resp-nome').focus(); return; }
+      const dup=db.responsaveis.find(r=>norm(r.nome)===norm(nome)&&r.id!==edit.resp); if(dup){ flash($('resp-msg'),`"${dup.nome}" já está cadastrado.`,'err'); return; }
+      if(edit.resp){ const r=respById(edit.resp); if(r){ r.nome=nome; r.funcao=funcao; r.contato=contato; } cancelResp(); flash($('resp-msg'),'Responsável atualizado.','ok'); }
+      else { db.responsaveis.push({ id:uid(), nome, funcao, contato }); flash($('resp-msg'),'Responsável adicionado.','ok'); }
+      save(); renderResponsaveis(); refreshSelects(); $('resp-nome').value=''; $('resp-funcao').value=''; $('resp-contato').value=''; $('resp-nome').focus(); }
+    function editarResp(id){ const r=respById(id); if(!r)return; edit.resp=id; $('resp-nome').value=r.nome; $('resp-funcao').value=r.funcao||''; $('resp-contato').value=r.contato||''; $('resp-form-title').textContent='Editar responsável'; $('resp-save').textContent='Salvar'; $('resp-cancel').style.display='inline-block'; $('resp-nome').focus(); }
+    function cancelResp(){ edit.resp=null; $('resp-form-title').textContent='Adicionar responsável'; $('resp-save').textContent='Adicionar'; $('resp-cancel').style.display='none'; $('resp-nome').value=''; $('resp-funcao').value=''; $('resp-contato').value=''; }
+    function excluirResp(id){ if(db.eventos.some(e=>e.responsavelId===id)){ flash($('resp-msg'),'Não dá pra excluir: há eventos com este responsável.','err'); return; } const r=respById(id); if(r&&confirm(`Excluir "${r.nome}"?`)){ db.responsaveis=db.responsaveis.filter(x=>x.id!==id); if(edit.resp===id)cancelResp(); save(); renderResponsaveis(); refreshSelects(); } }
+
+    /* ===== TIPOS DE EVENTO ===== */
+    function renderTipos(){ const tb=$('tipo-tbody'); tb.innerHTML=''; $('tipo-empty').style.display=db.tipos_evento.length?'none':'block';
+      db.tipos_evento.forEach(t=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td><span class="strong">${escapeHtml(t.nome)}</span></td><td><span class="muted">${escapeHtml(t.descricao)||'—'}</span></td><td class="num"><div class="row-actions"><button class="icon-btn" data-tipo-edit="${t.id}">Editar</button><button class="icon-btn del" data-tipo-del="${t.id}">Excluir</button></div></td>`; tb.appendChild(tr); }); }
+    function salvarTipo(){ const nome=$('tipo-nome').value.trim(), descricao=$('tipo-desc').value.trim();
+      if(!nome){ flash($('tipo-msg'),'Informe o nome do tipo.','err'); $('tipo-nome').focus(); return; }
+      const dup=db.tipos_evento.find(t=>norm(t.nome)===norm(nome)&&t.id!==edit.tipo); if(dup){ flash($('tipo-msg'),`"${dup.nome}" já está cadastrado.`,'err'); return; }
+      if(edit.tipo){ const t=tipoById(edit.tipo); if(t){ t.nome=nome; t.descricao=descricao; } cancelTipo(); flash($('tipo-msg'),'Tipo atualizado.','ok'); }
+      else { db.tipos_evento.push({ id:uid(), nome, descricao }); flash($('tipo-msg'),'Tipo adicionado.','ok'); }
+      save(); renderTipos(); refreshSelects(); $('tipo-nome').value=''; $('tipo-desc').value=''; $('tipo-nome').focus(); }
+    function editarTipo(id){ const t=tipoById(id); if(!t)return; edit.tipo=id; $('tipo-nome').value=t.nome; $('tipo-desc').value=t.descricao||''; $('tipo-form-title').textContent='Editar tipo'; $('tipo-save').textContent='Salvar'; $('tipo-cancel').style.display='inline-block'; $('tipo-nome').focus(); }
+    function cancelTipo(){ edit.tipo=null; $('tipo-form-title').textContent='Adicionar tipo'; $('tipo-save').textContent='Adicionar'; $('tipo-cancel').style.display='none'; $('tipo-nome').value=''; $('tipo-desc').value=''; }
+    function excluirTipo(id){ if(db.eventos.some(e=>e.tipoEventoId===id)){ flash($('tipo-msg'),'Não dá pra excluir: há eventos deste tipo.','err'); return; } const t=tipoById(id); if(t&&confirm(`Excluir o tipo "${t.nome}"?`)){ db.tipos_evento=db.tipos_evento.filter(x=>x.id!==id); if(edit.tipo===id)cancelTipo(); save(); renderTipos(); refreshSelects(); } }
+
+    /* ===== CAMPOS ===== */
     function refreshSelects(){
-      const opt = (arr, fn) => arr.map(x=>`<option value="${x.id}">${escapeHtml(fn(x))}</option>`).join('');
+      const opt=(arr,fn)=>arr.map(x=>`<option value="${x.id}">${escapeHtml(fn(x))}</option>`).join('');
+      const optEmpty=(arr,fn,vazio)=>`<option value="">${vazio}</option>`+arr.map(x=>`<option value="${x.id}">${escapeHtml(fn(x))}</option>`).join('');
       // talhões
       const tprop=$('talhao-prop'); const curT=tprop.value;
-      tprop.innerHTML = db.propriedades.length ? opt(db.propriedades,p=>p.nome) : '<option value="">Cadastre uma propriedade</option>';
-      if(curT) tprop.value=curT;
-      $('talhao-save').disabled = !db.propriedades.length;
+      tprop.innerHTML=db.propriedades.length?opt(db.propriedades,p=>p.nome):'<option value="">Cadastre uma propriedade</option>';
+      if(curT)tprop.value=curT; $('talhao-save').disabled=!db.propriedades.length;
       // campos
-      const cs=$('campo-safra'), cp=$('campo-prop'), cc=$('campo-cultura');
-      const sa=cs.value, pa=cp.value, ca=cc.value;
-      cs.innerHTML = db.safras.length ? opt(db.safras,s=>s.descricao) : '<option value="">Cadastre uma safra</option>';
-      cp.innerHTML = db.propriedades.length ? opt(db.propriedades,p=>p.nome) : '<option value="">Cadastre uma propriedade</option>';
-      cc.innerHTML = db.culturas.length ? opt(db.culturas,c=>c.nome + (c.unidade?` (${c.unidade})`:'')) : '<option value="">Cadastre uma cultura</option>';
-      if(sa)cs.value=sa; if(pa)cp.value=pa; if(ca)cc.value=ca;
-      updateCampoTalhao();
-      const pronto = db.safras.length && db.propriedades.length && db.culturas.length;
-      $('campo-save').disabled = !pronto;
+      const cs=$('campo-safra'),cp=$('campo-prop'),cc=$('campo-cultura'); const sa=cs.value,pa=cp.value,ca=cc.value;
+      cs.innerHTML=db.safras.length?opt(db.safras,s=>s.descricao):'<option value="">Cadastre uma safra</option>';
+      cp.innerHTML=db.propriedades.length?opt(db.propriedades,p=>p.nome):'<option value="">Cadastre uma propriedade</option>';
+      cc.innerHTML=db.culturas.length?opt(db.culturas,c=>c.nome+(c.unidade?` (${c.unidade})`:'')):'<option value="">Cadastre uma cultura</option>';
+      if(sa)cs.value=sa; if(pa)cp.value=pa; if(ca)cc.value=ca; updateCampoTalhao();
+      $('campo-save').disabled=!(db.safras.length&&db.propriedades.length&&db.culturas.length);
+      // eventos
+      const ecampo=$('evento-campo'),etipo=$('evento-tipo'),eresp=$('evento-resp'),eitem=$('evento-item'),edep=$('evento-deposito');
+      const va=ecampo.value,ta=etipo.value,ra=eresp.value,ia=eitem.value,da=edep.value;
+      ecampo.innerHTML=db.campos.length?opt(db.campos,c=>campoLabel(c)):'<option value="">Cadastre um campo</option>';
+      etipo.innerHTML=db.tipos_evento.length?opt(db.tipos_evento,t=>t.nome):'<option value="">Cadastre um tipo</option>';
+      eresp.innerHTML=optEmpty(db.responsaveis,r=>r.nome,'— sem responsável —');
+      eitem.innerHTML=optEmpty(db.itens,i=>i.codigo+' — '+i.nome,'— sem consumo —');
+      edep.innerHTML=optEmpty(db.depositos,d=>d.nome,'—');
+      if(va)ecampo.value=va; if(ta)etipo.value=ta; if(ra)eresp.value=ra; if(ia)eitem.value=ia; if(da)edep.value=da;
+      $('evento-save').disabled=!(db.campos.length&&db.tipos_evento.length);
     }
-    function updateCampoTalhao(){
-      const cp=$('campo-prop').value, sel=$('campo-talhao'), cur=sel.value;
-      const lista = db.talhoes.filter(t=>t.propriedadeId===cp);
-      sel.innerHTML = lista.length ? lista.map(t=>`<option value="${t.id}">${escapeHtml(t.nome)}</option>`).join('') : '<option value="">Sem talhões nesta propriedade</option>';
-      if(cur && lista.some(t=>t.id===cur)) sel.value=cur;
-    }
-    function renderCampos(){
-      const tb=$('campo-tbody'); tb.innerHTML='';
-      $('campo-empty').style.display = db.campos.length ? 'none':'block';
-      let areaTotal=0; const cultSet=new Set();
-      db.campos.forEach(c=>{ areaTotal+=Number(c.area)||0; if(c.culturaId)cultSet.add(c.culturaId); });
-      db.campos.forEach(c=>{
-        const s=safraById(c.safraId), p=propById(c.propriedadeId), t=talhaoById(c.talhaoId), cu=culturaById(c.culturaId);
-        const tr=document.createElement('tr');
-        tr.innerHTML=`<td><span class="pill gold">${s?escapeHtml(s.descricao):'—'}</span></td>
-          <td>${p?escapeHtml(p.nome):'—'}</td>
-          <td><span class="strong">${t?escapeHtml(t.nome):'—'}</span></td>
-          <td><span class="pill">${cu?escapeHtml(cu.nome):'—'}</span></td>
-          <td class="num">${c.area?numBR(c.area):'—'}</td>
-          <td class="num"><div class="row-actions"><button class="icon-btn" data-campo-edit="${c.id}">Editar</button><button class="icon-btn del" data-campo-del="${c.id}">Excluir</button></div></td>`;
-        tb.appendChild(tr);
-      });
-      $('campo-total').textContent=numBR(db.campos.length);
-      $('campo-area').textContent=numBR(areaTotal);
-      $('campo-culturas').textContent=numBR(cultSet.size);
-    }
-    function salvarCampo(){
-      const safraId=$('campo-safra').value, propriedadeId=$('campo-prop').value, talhaoId=$('campo-talhao').value, culturaId=$('campo-cultura').value, area=$('campo-area').value===''?0:Number($('campo-area').value);
-      if(!safraId){ flash($('campo-msg'),'Selecione a safra.','err'); return; }
-      if(!propriedadeId){ flash($('campo-msg'),'Selecione a propriedade.','err'); return; }
-      if(!talhaoId){ flash($('campo-msg'),'Selecione o talhão (cadastre talhões nesta propriedade primeiro).','err'); return; }
-      if(!culturaId){ flash($('campo-msg'),'Selecione a cultura.','err'); return; }
-      const dup=db.campos.find(c=>c.safraId===safraId&&c.talhaoId===talhaoId&&c.culturaId===culturaId&&c.id!==edit.campo);
-      if(dup){ flash($('campo-msg'),'Esse campo já existe (mesma safra, talhão e cultura).','err'); return; }
-      if(edit.campo){ const c=db.campos.find(x=>x.id===edit.campo); if(c){ c.safraId=safraId; c.propriedadeId=propriedadeId; c.talhaoId=talhaoId; c.culturaId=culturaId; c.area=area; } cancelCampo(); flash($('campo-msg'),'Campo atualizado.','ok'); }
+    function updateCampoTalhao(){ const cp=$('campo-prop').value, sel=$('campo-talhao'), cur=sel.value; const lista=db.talhoes.filter(t=>t.propriedadeId===cp); sel.innerHTML=lista.length?lista.map(t=>`<option value="${t.id}">${escapeHtml(t.nome)}</option>`).join(''):'<option value="">Sem talhões nesta propriedade</option>'; if(cur&&lista.some(t=>t.id===cur))sel.value=cur; }
+    function renderCampos(){ const tb=$('campo-tbody'); tb.innerHTML=''; $('campo-empty').style.display=db.campos.length?'none':'block'; let areaTotal=0; const cultSet=new Set();
+      db.campos.forEach(c=>{ areaTotal+=Number(c.area)||0; if(c.culturaId)cultSet.add(c.culturaId);
+        const s=safraById(c.safraId),p=propById(c.propriedadeId),t=talhaoById(c.talhaoId),cu=culturaById(c.culturaId); const tr=document.createElement('tr');
+        tr.innerHTML=`<td><span class="pill gold">${s?escapeHtml(s.descricao):'—'}</span></td><td>${p?escapeHtml(p.nome):'—'}</td><td><span class="strong">${t?escapeHtml(t.nome):'—'}</span></td><td><span class="pill">${cu?escapeHtml(cu.nome):'—'}</span></td><td class="num">${c.area?numBR(c.area):'—'}</td><td class="num"><div class="row-actions"><button class="icon-btn" data-campo-edit="${c.id}">Editar</button><button class="icon-btn del" data-campo-del="${c.id}">Excluir</button></div></td>`; tb.appendChild(tr); });
+      $('campo-total').textContent=numBR(db.campos.length); $('campo-area').textContent=numBR(areaTotal); $('campo-culturas').textContent=numBR(cultSet.size); }
+    function salvarCampo(){ const safraId=$('campo-safra').value,propriedadeId=$('campo-prop').value,talhaoId=$('campo-talhao').value,culturaId=$('campo-cultura').value,area=$('campo-area-in').value===''?0:Number($('campo-area-in').value);
+      if(!safraId){ flash($('campo-msg'),'Selecione a safra.','err'); return; } if(!propriedadeId){ flash($('campo-msg'),'Selecione a propriedade.','err'); return; }
+      if(!talhaoId){ flash($('campo-msg'),'Selecione o talhão (cadastre talhões nesta propriedade primeiro).','err'); return; } if(!culturaId){ flash($('campo-msg'),'Selecione a cultura.','err'); return; }
+      const dup=db.campos.find(c=>c.safraId===safraId&&c.talhaoId===talhaoId&&c.culturaId===culturaId&&c.id!==edit.campo); if(dup){ flash($('campo-msg'),'Esse campo já existe (mesma safra, talhão e cultura).','err'); return; }
+      if(edit.campo){ const c=campoById(edit.campo); if(c){ c.safraId=safraId; c.propriedadeId=propriedadeId; c.talhaoId=talhaoId; c.culturaId=culturaId; c.area=area; } cancelCampo(); flash($('campo-msg'),'Campo atualizado.','ok'); }
       else { db.campos.push({ id:uid(), safraId, propriedadeId, talhaoId, culturaId, area, obs:'' }); flash($('campo-msg'),'Campo adicionado.','ok'); }
-      save(); renderCampos(); $('campo-area').value='';
-    }
-    function editarCampo(id){ const c=db.campos.find(x=>x.id===id); if(!c)return; edit.campo=id; $('campo-safra').value=c.safraId; $('campo-prop').value=c.propriedadeId; updateCampoTalhao(); $('campo-talhao').value=c.talhaoId; $('campo-cultura').value=c.culturaId; $('campo-area').value=c.area||''; $('campo-form-title').textContent='Editar campo'; $('campo-save').textContent='Salvar'; $('campo-cancel').style.display='inline-block'; }
-    function cancelCampo(){ edit.campo=null; $('campo-form-title').textContent='Adicionar campo'; $('campo-save').textContent='Adicionar'; $('campo-cancel').style.display='none'; $('campo-area').value=''; }
-    function excluirCampo(id){ if(confirm('Excluir este campo da safra?')){ db.campos=db.campos.filter(x=>x.id!==id); if(edit.campo===id)cancelCampo(); save(); renderCampos(); } }
+      save(); renderCampos(); refreshSelects(); $('campo-area-in').value=''; }
+    function editarCampo(id){ const c=campoById(id); if(!c)return; edit.campo=id; $('campo-safra').value=c.safraId; $('campo-prop').value=c.propriedadeId; updateCampoTalhao(); $('campo-talhao').value=c.talhaoId; $('campo-cultura').value=c.culturaId; $('campo-area-in').value=c.area||''; $('campo-form-title').textContent='Editar campo'; $('campo-save').textContent='Salvar'; $('campo-cancel').style.display='inline-block'; }
+    function cancelCampo(){ edit.campo=null; $('campo-form-title').textContent='Adicionar campo'; $('campo-save').textContent='Adicionar'; $('campo-cancel').style.display='none'; $('campo-area-in').value=''; }
+    function excluirCampo(id){ if(db.eventos.some(e=>e.campoId===id)){ flash($('campo-msg'),'Não dá pra excluir: há eventos neste campo.','err'); return; } if(confirm('Excluir este campo da safra?')){ db.campos=db.campos.filter(x=>x.id!==id); if(edit.campo===id)cancelCampo(); save(); renderCampos(); refreshSelects(); } }
+    function exportarCampos(){ if(!db.campos.length){ alert('Não há campos para exportar.'); return; } const sep=';',dec=n=>(Number(n)||0).toFixed(2).replace('.',','),campo=v=>{v=String(v==null?'':v);return /[;"\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+      const cab=['Safra','Propriedade','Talhão','Cultura','Área (ha)'].join(sep); const linhas=db.campos.map(c=>{const s=safraById(c.safraId),p=propById(c.propriedadeId),t=talhaoById(c.talhaoId),cu=culturaById(c.culturaId);return [campo(s?s.descricao:''),campo(p?p.nome:''),campo(t?t.nome:''),campo(cu?cu.nome:''),dec(c.area)].join(sep);});
+      baixarCSV('campos_safra', [cab,...linhas]); }
 
-    function exportarCampos(){
-      if(!db.campos.length){ alert('Não há campos para exportar.'); return; }
-      const sep=';'; const dec=n=>(Number(n)||0).toFixed(2).replace('.',',');
-      const campo=v=>{ v=String(v==null?'':v); return /[;"\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; };
-      const cab=['Safra','Propriedade','Talhão','Cultura','Área (ha)'].join(sep);
-      const linhas=db.campos.map(c=>{ const s=safraById(c.safraId),p=propById(c.propriedadeId),t=talhaoById(c.talhaoId),cu=culturaById(c.culturaId);
-        return [campo(s?s.descricao:''),campo(p?p.nome:''),campo(t?t.nome:''),campo(cu?cu.nome:''),dec(c.area)].join(sep); });
-      const csv='\uFEFF'+[cab,...linhas].join('\r\n');
-      const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}); const url=URL.createObjectURL(blob); const a=document.createElement('a');
-      a.href=url; a.download='campos_safra_'+new Date().toISOString().slice(0,10)+'.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-    }
+    /* ===== EVENTOS ===== */
+    function consumoTexto(e){ if(!e.itemId) return '—'; const it=itemById(e.itemId), d=depById(e.depositoId); return `${it?escapeHtml(it.nome):'item'} — ${numBR(e.quantidade)} ${it?escapeHtml(it.unidade):''}${d?' ('+escapeHtml(d.nome)+')':''}`; }
+    function renderEventos(){ const tb=$('evento-tbody'); tb.innerHTML=''; $('evento-empty').style.display=db.eventos.length?'none':'block'; let horas=0,comConsumo=0;
+      const ord=[...db.eventos].sort((a,b)=>(b.data||'').localeCompare(a.data||''));
+      ord.forEach(e=>{ horas+=Number(e.tempo)||0; if(e.itemId)comConsumo++; const c=campoById(e.campoId),t=tipoById(e.tipoEventoId),r=respById(e.responsavelId); const tr=document.createElement('tr');
+        tr.innerHTML=`<td><span class="muted">${fmtData(e.data)}</span></td><td>${escapeHtml(campoLabel(c))}</td><td><span class="pill blue">${t?escapeHtml(t.nome):'—'}</span></td><td>${r?escapeHtml(r.nome):'<span class="muted">—</span>'}</td><td class="num">${e.tempo?numBR(e.tempo):'—'}</td><td>${consumoTexto(e)}</td><td class="num"><div class="row-actions"><button class="icon-btn" data-evento-edit="${e.id}">Editar</button><button class="icon-btn del" data-evento-del="${e.id}">Excluir</button></div></td>`; tb.appendChild(tr); });
+      $('evento-total').textContent=numBR(db.eventos.length); $('evento-horas').textContent=numBR(horas); $('evento-consumo').textContent=numBR(comConsumo); }
+    function salvarEvento(){ const campoId=$('evento-campo').value,tipoEventoId=$('evento-tipo').value,responsavelId=$('evento-resp').value,data=$('evento-data').value,tempo=$('evento-tempo').value===''?0:Number($('evento-tempo').value),itemId=$('evento-item').value,depositoId=$('evento-deposito').value,quantidade=$('evento-qtd').value===''?0:Number($('evento-qtd').value);
+      if(!campoId){ flash($('evento-msg'),'Selecione o campo.','err'); return; } if(!tipoEventoId){ flash($('evento-msg'),'Selecione o tipo de evento.','err'); return; }
+      if(itemId && !(quantidade>0)){ flash($('evento-msg'),'Informe a quantidade do item consumido.','err'); $('evento-qtd').focus(); return; }
+      if(itemId && !depositoId){ flash($('evento-msg'),'Selecione o depósito de onde saiu o item.','err'); return; }
+      if(edit.evento){ const e=db.eventos.find(x=>x.id===edit.evento); if(e){ Object.assign(e,{campoId,tipoEventoId,responsavelId,data,tempo,itemId,depositoId,quantidade}); } cancelEvento(); flash($('evento-msg'),'Evento atualizado.','ok'); }
+      else { db.eventos.push({ id:uid(), campoId, tipoEventoId, responsavelId, data, tempo, itemId, depositoId, quantidade, obs:'' }); flash($('evento-msg'),'Evento registrado.','ok'); }
+      save(); renderEventos(); $('evento-tempo').value=''; $('evento-qtd').value=''; $('evento-item').value=''; $('evento-deposito').value=''; }
+    function editarEvento(id){ const e=db.eventos.find(x=>x.id===id); if(!e)return; edit.evento=id; $('evento-campo').value=e.campoId; $('evento-tipo').value=e.tipoEventoId; $('evento-resp').value=e.responsavelId||''; $('evento-data').value=e.data||''; $('evento-tempo').value=e.tempo||''; $('evento-item').value=e.itemId||''; $('evento-deposito').value=e.depositoId||''; $('evento-qtd').value=e.quantidade||''; $('evento-form-title').textContent='Editar evento'; $('evento-save').textContent='Salvar'; $('evento-cancel').style.display='inline-block'; }
+    function cancelEvento(){ edit.evento=null; $('evento-form-title').textContent='Adicionar evento'; $('evento-save').textContent='Adicionar'; $('evento-cancel').style.display='none'; $('evento-tempo').value=''; $('evento-qtd').value=''; $('evento-item').value=''; $('evento-deposito').value=''; }
+    function excluirEvento(id){ if(confirm('Excluir este evento?')){ db.eventos=db.eventos.filter(x=>x.id!==id); if(edit.evento===id)cancelEvento(); save(); renderEventos(); } }
+    function exportarEventos(){ if(!db.eventos.length){ alert('Não há eventos para exportar.'); return; } const sep=';',dec=n=>(Number(n)||0).toFixed(2).replace('.',','),campo=v=>{v=String(v==null?'':v);return /[;"\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+      const cab=['Data','Campo','Tipo','Responsável','Tempo (h)','Item','Quantidade','Depósito'].join(sep);
+      const linhas=db.eventos.map(e=>{const c=campoById(e.campoId),t=tipoById(e.tipoEventoId),r=respById(e.responsavelId),it=itemById(e.itemId),d=depById(e.depositoId);return [campo(fmtData(e.data)),campo(campoLabel(c)),campo(t?t.nome:''),campo(r?r.nome:''),dec(e.tempo),campo(it?it.nome:''),e.itemId?dec(e.quantidade):'',campo(d?d.nome:'')].join(sep);});
+      baixarCSV('eventos', [cab,...linhas]); }
+
+    function baixarCSV(nome, linhas){ const csv='\uFEFF'+linhas.join('\r\n'); const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=nome+'_'+new Date().toISOString().slice(0,10)+'.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); }
 
     /* ===== ABAS / EVENTOS ===== */
-    function switchTab(name){
-      document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('is-active', t.dataset.tab===name));
-      document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('is-active', s.id==='screen-'+name));
-    }
+    function switchTab(name){ document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('is-active',t.dataset.tab===name)); document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('is-active',s.id==='screen-'+name)); }
     document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchTab(t.dataset.tab)));
 
     $('safra-save').addEventListener('click',salvarSafra); $('safra-cancel').addEventListener('click',cancelSafra);
     $('prop-save').addEventListener('click',salvarProp); $('prop-cancel').addEventListener('click',cancelProp);
     $('talhao-save').addEventListener('click',salvarTalhao); $('talhao-cancel').addEventListener('click',cancelTalhao);
     $('cultura-save').addEventListener('click',salvarCultura); $('cultura-cancel').addEventListener('click',cancelCultura);
-    $('campo-save').addEventListener('click',salvarCampo); $('campo-cancel').addEventListener('click',cancelCampo);
-    $('campo-prop').addEventListener('change',updateCampoTalhao);
-    $('campo-export').addEventListener('click',exportarCampos);
+    $('campo-save').addEventListener('click',salvarCampo); $('campo-cancel').addEventListener('click',cancelCampo); $('campo-prop').addEventListener('change',updateCampoTalhao); $('campo-export').addEventListener('click',exportarCampos);
+    $('resp-save').addEventListener('click',salvarResp); $('resp-cancel').addEventListener('click',cancelResp);
+    $('tipo-save').addEventListener('click',salvarTipo); $('tipo-cancel').addEventListener('click',cancelTipo);
+    $('evento-save').addEventListener('click',salvarEvento); $('evento-cancel').addEventListener('click',cancelEvento); $('evento-export').addEventListener('click',exportarEventos);
 
-    ['safra-desc'].forEach(id=>$(id).addEventListener('keydown',e=>{ if(e.key==='Enter')salvarSafra(); }));
-    ['prop-nome','prop-local','prop-area'].forEach(id=>$(id).addEventListener('keydown',e=>{ if(e.key==='Enter')salvarProp(); }));
-    ['talhao-nome','talhao-area'].forEach(id=>$(id).addEventListener('keydown',e=>{ if(e.key==='Enter')salvarTalhao(); }));
-    ['cultura-nome','cultura-unidade'].forEach(id=>$(id).addEventListener('keydown',e=>{ if(e.key==='Enter')salvarCultura(); }));
+    ['safra-desc'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')salvarSafra();}));
+    ['prop-nome','prop-local','prop-area'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')salvarProp();}));
+    ['talhao-nome','talhao-area'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')salvarTalhao();}));
+    ['cultura-nome','cultura-unidade'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')salvarCultura();}));
+    ['resp-nome','resp-funcao','resp-contato'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')salvarResp();}));
+    ['tipo-nome','tipo-desc'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')salvarTipo();}));
 
-    document.addEventListener('click',e=>{
-      const t=e.target;
-      const map=[['safra-edit',editarSafra],['safra-del',excluirSafra],['prop-edit',editarProp],['prop-del',excluirProp],
-        ['talhao-edit',editarTalhao],['talhao-del',excluirTalhao],['cultura-edit',editarCultura],['cultura-del',excluirCultura],
-        ['campo-edit',editarCampo],['campo-del',excluirCampo]];
-      for(const [attr,fn] of map){ const v=t.getAttribute('data-'+attr); if(v){ fn(v); return; } }
-    });
+    document.addEventListener('click',e=>{ const t=e.target; const map=[['safra-edit',editarSafra],['safra-del',excluirSafra],['prop-edit',editarProp],['prop-del',excluirProp],['talhao-edit',editarTalhao],['talhao-del',excluirTalhao],['cultura-edit',editarCultura],['cultura-del',excluirCultura],['campo-edit',editarCampo],['campo-del',excluirCampo],['resp-edit',editarResp],['resp-del',excluirResp],['tipo-edit',editarTipo],['tipo-del',excluirTipo],['evento-edit',editarEvento],['evento-del',excluirEvento]]; for(const [attr,fn] of map){ const v=t.getAttribute('data-'+attr); if(v){ fn(v); return; } } });
 
-    // iniciar
     load(); renderAll(); loadCloud();
   </script>
 </body>
